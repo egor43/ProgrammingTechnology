@@ -10,6 +10,11 @@ using System.Windows.Forms;
 
 namespace ProgrammingTechnology
 {
+    //Класс "Controller"
+    //Представляет собой "мост" между пользовательским интерфейсом и бизнес-логикой программы
+    // 
+    //Ответственный: Мышко Е. 
+
     public partial class Controller : Form
     {
         public Controller()
