@@ -22,5 +22,24 @@ namespace ProgrammingTechnology
             InitializeComponent();
         }
 
+        private void Converter_TEST_Click(object sender, EventArgs e)
+        {
+            //Конвертер тестируеи ТУТ !!!!!!!!!!!!!!!!!!!!!
+        }
+
+        private void Decorator_TEST_Click(object sender, EventArgs e)
+        {
+            //Декоратор тестируеи ТУТ !!!!!!!!!!!!!!!!!!!!!
+        }
+
+        private void Methods_TEST_Click(object sender, EventArgs e)
+        {
+            //Методы тестируеи ТУТ !!!!!!!!!!!!!!!!!!!!!
+        }
+
+        private void View_TEST_Click(object sender, EventArgs e)
+        {
+            //Вьюшку тестируеи ТУТ !!!!!!!!!!!!!!!!!!!!!
+        }
     }
 }
