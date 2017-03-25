@@ -5,13 +5,13 @@ using System.Text;
 
 namespace ProgrammingTechnology
 {
-    //Класс "Methods"
+    //Класс "Methods" - статический
     //Представляет собой хранилище методов сортировок.
     //Класс предоставляет инструменты для работы с методами сортировок.
     // 
     //Ответственный: Шамхалов Р. 
 
-    class Methods
+    static class Methods
     {
     }
 }
