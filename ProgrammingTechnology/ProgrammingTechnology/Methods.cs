@@ -13,6 +13,48 @@ namespace ProgrammingTechnology
 
     static class Methods
     {
+        private static int[] MergeSort(int[] mas) //сортировка слиянием
+        {
+            if (mas.Length == 1) return mas;
+            int middle = mas.Length / 2;
+
+            // массивы для разбиения входного массива на две части
+            int[] left = new int[middle];
+            int[] right = new int[mas.Length - middle];
+
+            // заполнение данными из входного массива
+            for (int i = 0; i < middle; i++)
+                left[i] = mas[i];
+            for (int i = 0; i < mas.Length - middle; i++)
+                right[i] = mas[i + middle];
+
+            // рекурсивно вызываем функцию разбиения входного массива, рабиваем на части, содержащие по два числа из входного массива
+            left = MergeSort(left);
+            right = MergeSort(right);
+
+            int leftptr = 0;
+            int rightptr = 0;
+
+            int[] sorted = new int[mas.Length];
+
+            // слияние упорядоченных частей исходного массива
+            for (int i = 0; i < mas.Length; i++)
+            {
+                if (rightptr == right.Length || ((leftptr < left.Length) && (left[leftptr] <= right[rightptr])))
+                {
+                    sorted[i] = left[leftptr];
+                    leftptr++;
+                }
+                else if (leftptr == left.Length || ((rightptr < right.Length) && (right[rightptr] <= left[leftptr])))
+                {
+                    sorted[i] = right[rightptr];
+                    rightptr++;
+                }
+            }
+
+            return sorted;
+        }
+
         private static int[] GnomeSort(int[] Input)
         {
             int index = 0;
