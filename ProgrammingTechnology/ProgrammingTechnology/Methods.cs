@@ -19,13 +19,13 @@ namespace ProgrammingTechnology
             int index = 0;
             while (index < Input.Length)
             {
-                if (index == 0 || Input[index - 1] <= Input[index]) ++index;
+                if (index == 0 || Input[index - 1] <= Input[index]) index++;
                 else
                 {
-                    var cash = Input[index];
+                    int cash = Input[index];
                     Input[index] = Input[index - 1];
                     Input[index - 1] = cash; 
-                    --index;
+                    index--;
                 }
             }
             return Input;
