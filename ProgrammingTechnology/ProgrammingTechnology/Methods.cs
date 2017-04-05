@@ -99,6 +99,7 @@ namespace ProgrammingTechnology
                     Insert[index] = Insert[minEl];
                     Insert[minEl] = kesh;
                 }
+                return Insert;
             }
         }
     }
