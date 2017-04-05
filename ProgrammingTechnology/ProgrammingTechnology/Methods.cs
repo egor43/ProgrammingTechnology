@@ -71,5 +71,35 @@ namespace ProgrammingTechnology
             }
             return Input;
         }
+
+        private static int [] quickSort(int[] Insert, int l, int r)
+        {
+            int temp;
+            int x = Insert[l + (r - l) / 2];
+
+            int i = l;
+            int j = r;
+
+            while (i <= j)
+            {
+                while (Insert[i] < x) i++;
+                while (Insert[j] > x) j--;
+                if (i <= j)
+                {
+                    temp = Insert[i];
+                    Insert[i] = Insert[j];
+                    Insert[j] = temp;
+                    i++;
+                    j--;
+                }
+            }
+
+            if (i < r)
+                quickSort(Insert, i, r);
+
+            if (l < j)
+                quickSort(Insert, l, j);
+            return Insert;
+        }
     }
 }
