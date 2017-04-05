@@ -72,34 +72,34 @@ namespace ProgrammingTechnology
             return Input;
         }
 
-        private static int [] quickSort(int[] Insert, int l, int r)
+        private int [] SelectionSort(int[] Insert)//сортировка выбором
         {
-            int temp;
-            int x = Insert[l + (r - l) / 2];
 
-            int i = l;
-            int j = r;
+            int minEl, kesh;
+            int length = Insert.Length;
 
-            while (i <= j)
+            for (int i = 0; i < length - 1; i++)
             {
-                while (Insert[i] < x) i++;
-                while (Insert[j] > x) j--;
-                if (i <= j)
+                //устанавливаем начальное значение минимального индекса 
+                minEl = index;
+
+                //находим индекс минимального элемента 
+                for (int j = index + 1; j < length; j++)
                 {
-                    temp = Insert[i];
-                    Insert[i] = Insert[j];
-                    Insert[j] = temp;
-                    i++;
-                    j--;
+                    if (Insert[j] < Insert[minEl])
+                    {
+                        minEl = j;
+                    }
+                }
+
+                //меняем местами значения
+                if (minEl != index)
+                {
+                    kesh = Insert[index];
+                    Insert[index] = Insert[minEl];
+                    Insert[minEl] = kesh;
                 }
             }
-
-            if (i < r)
-                quickSort(Insert, i, r);
-
-            if (l < j)
-                quickSort(Insert, l, j);
-            return Insert;
         }
     }
 }
