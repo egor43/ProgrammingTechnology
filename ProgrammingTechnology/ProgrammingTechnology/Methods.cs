@@ -78,7 +78,7 @@ namespace ProgrammingTechnology
             int minEl, kesh;
             int length = Insert.Length;
 
-            for (int index = 0; i < length - 1; index++)
+            for (int index = 0; index < length - 1; index++)
             {
                 //устанавливаем начальное значение минимального индекса 
                 minEl = index;
