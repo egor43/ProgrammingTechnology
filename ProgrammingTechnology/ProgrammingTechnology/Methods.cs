@@ -72,13 +72,13 @@ namespace ProgrammingTechnology
             return Input;
         }
 
-        private int [] SelectionSort(int[] Insert)//сортировка выбором
+        private static int [] SelectionSort(int[] Insert)//сортировка выбором
         {
 
             int minEl, kesh;
             int length = Insert.Length;
 
-            for (int i = 0; i < length - 1; i++)
+            for (int index = 0; i < length - 1; index++)
             {
                 //устанавливаем начальное значение минимального индекса 
                 minEl = index;
