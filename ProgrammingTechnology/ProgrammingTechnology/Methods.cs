@@ -71,5 +71,44 @@ namespace ProgrammingTechnology
             }
             return Input;
         }
+        
+        private static int [] Sheker(int[] array)
+        {
+            // левая и правая границы сортируемой области массива
+            int left = 0, right = array.Length - 1;
+            bool flag = true; // наличие перемещений
+
+            /* Выполнение цикла пока левая граница не сомкнётся с правой
+               или пока в массиве имеются перемещения */
+            while ((left < right) && flag == true)
+            {
+                flag = false;
+                for (int i = left; i < right; i++)  //двигаемся слева направо
+                {
+                    if (array[i] > array[i + 1]) // если следующий элемент меньше текущего,
+                    {                           // меняем их местами
+                        int t = array[i];
+                        array[i] = array[i + 1];
+                        array[i + 1] = t;
+                        flag = true;      // перемещения в этом цикле были
+                    }
+                }
+                right--; // сдвигаем правую границу на предыдущий элемент
+
+                for (int i = right; i > left; i--)  //двигаемся справа налево
+                {
+                    if (array[i - 1] > array[i]) // если предыдущий элемент больше текущего,
+                    {                           // меняем их местами
+                        int t = array[i];
+                        array[i] = array[i - 1];
+                        array[i - 1] = t;
+                        flag = true;    // перемещения в этом цикле были
+                    }
+                }
+                left++; // сдвигаем левую границу на следующий элемент
+            }
+
+            return array;
+        }
     }
 }
