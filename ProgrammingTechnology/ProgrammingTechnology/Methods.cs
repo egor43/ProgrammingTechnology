@@ -30,56 +30,43 @@ namespace ProgrammingTechnology
             return Input;
         }
         
+        static void swap(int[] array, int i, int j)
+        {
+            int temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+        }
+        
        public static int[] BubbleSort(int[] array)
         {
-            int temp;
             for (int i = 0; i < array.Length; i++)
-            {
                 for (int j = i + 1; j < array.Length; j++)
-                {
                     if (array[i] > array[j])
-                    {
-                        temp = array[i];
-                        array[i] = array[j];
-                        array[j] = temp;
-                    }                   
-                }            
-            }
+                        swap(array,i,j);    
+           
             return array;
         }
-     /// <summary>
-     /// Метод демонстрирует производительность только на многопоточных процессорах
-     /// </summary>
-    static int[] OddEvenSort(int[] array)
+
+        /// <summary>
+        /// Метод демонстрирует производительность только на многопоточных процессорах
+        /// </summary>
+       public static int[] OddEvenSort(int[] array)
         {
-            int temp ;
             for (int i = 0; i < array.Count(); i++)
             {
-                if (i % 2 == 0) //нечетные
+                if (i % 2 == 0) // текущая позиция нечетная
                 {
                     for (int j = 2; j < array.Length; j += 2)
-                    {
                         if (array[j] < array[j - 1])
-                        {
-                            temp = array[j];
-                            array[j] = array[j - 1];
-                            array[j - 1] = temp;
-                        }
-                    }
+                            swap(array, j, j - 1);
                 }
                 else
                 {
-                    for (int j = 1; j < array.Length; j += 2)
-                    {
+                    for (int j = 1; j < array.Length; j += 2)                    
                         if (array[j] < array[j - 1])
-                        {
-                            temp = array[j];
-                            array[j] = array[j - 1];
-                            array[j - 1] = temp;
-                        }
-                    }
+                            swap(array, j, j - 1);
                 }
-            }
+            }       
             return array;
         }
     }
