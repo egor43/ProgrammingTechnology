@@ -30,14 +30,22 @@ namespace ProgrammingTechnology
             return Input;
         }
         
-        static void swap(int[] array, int i, int j)
+       /// <summary>
+       /// Метод обмена местами двух элементов в массиве.
+       /// </summary> 
+       private static void swap(int[] array, int i, int j)
         {
             int temp = array[i];
             array[i] = array[j];
             array[j] = temp;
         }
         
-       public static int[] BubbleSort(int[] array)
+        /// <summary>
+        /// Сортировка пузырьковая.
+        /// Суть алгоритма закючается в том, чтобы проходя n-1 раз по массиву, каждый проход сравнивать элементы попарно и, 
+        /// если порядок в паре неверный, выполнять обмен элементов.
+        /// </summary>
+        private static int[] BubbleSort(int[] array)
         {
             for (int i = 0; i < array.Length; i++)
                 for (int j = i + 1; j < array.Length; j++)
@@ -48,20 +56,22 @@ namespace ProgrammingTechnology
         }
 
         /// <summary>
-        /// Метод демонстрирует производительность только на многопоточных процессорах
+        /// Сортировка чет-нечет.
+        /// Представляет собой модификацию пузырьковой сортировки разработанную для использования на параллельных процессорах. 
+        /// Суть модификации в том, чтобы независимо сравнивать элементы массива под чётными и нечётными индексами с последующими элементами.
         /// </summary>
-       public static int[] OddEvenSort(int[] array)
+       private static int[] OddEvenSort(int[] array)
         {
-            for (int i = 0; i < array.Count(); i++)
+            for (int i = 0; i < array.Length; i++)
             {
-                if (i % 2 == 0) // текущая позиция нечетная
-                {
+                if (i % 2 == 0) 
+                {//для нечетных
                     for (int j = 2; j < array.Length; j += 2)
                         if (array[j] < array[j - 1])
                             swap(array, j, j - 1);
                 }
-                else
-                {
+                else 
+                {//для четных
                     for (int j = 1; j < array.Length; j += 2)                    
                         if (array[j] < array[j - 1])
                             swap(array, j, j - 1);
