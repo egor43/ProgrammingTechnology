@@ -22,6 +22,11 @@ namespace ProgrammingTechnology
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Тест конвертера текстового файлов в массив int.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Converter_TEST_Click(object sender, EventArgs e)
         {
             string path = "D:\\Loads\\1.txt";
