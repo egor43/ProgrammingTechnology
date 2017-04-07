@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -37,7 +37,31 @@ namespace ProgrammingTechnology
            
             return array;
         }
-        
+      /// <summary>
+        /// Сортировка чет-нечет.
+        /// Представляет собой модификацию пузырьковой сортировки разработанную для использования на параллельных процессорах. 
+        /// Суть модификации в том, чтобы независимо сравнивать элементы массива под чётными и нечётными индексами с последующими элементами.
+        /// </summary>
+       private static int[] OddEvenSort(int[] array)
+        {
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (i % 2 == 0) 
+                {//для нечетных
+                    for (int j = 2; j < array.Length; j += 2)
+                        if (array[j] < array[j - 1])
+                            swap(array, j, j - 1);
+                }
+                else 
+                {//для четных
+                    for (int j = 1; j < array.Length; j += 2)                    
+                        if (array[j] < array[j - 1])
+                            swap(array, j, j - 1);
+                }
+            }       
+            return array;
+        }  
+      
         private static int[] CombSor(int[] array)
         {
             int h = array.Length; // начальный шаг
