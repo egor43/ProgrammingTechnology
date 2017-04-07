@@ -24,7 +24,18 @@ namespace ProgrammingTechnology
 
         private void Converter_TEST_Click(object sender, EventArgs e)
         {
-            //Конвертер тестируем ТУТ !!!!!!!!!!!!!!!!!!!!!
+            string path = "D:\\Loads\\1.txt";
+            char[] separators = new char[] { ',', ';' };
+            int[] test;
+            try
+            {
+                test = Converter.Convert(path, separators);
+                MessageBox.Show("Тест успешен.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void Decorator_TEST_Click(object sender, EventArgs e)
