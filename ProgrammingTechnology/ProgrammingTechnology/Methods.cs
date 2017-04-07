@@ -13,6 +13,57 @@ namespace ProgrammingTechnology
 
     static class Methods
     {
+       /// <summary>
+       /// Метод обмена местами двух элементов в массиве.
+       /// </summary> 
+       private static void swap(int[] array, int i, int j)
+        {
+            int temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+        }
+        
+        /// <summary>
+        /// Сортировка пузырьковая.
+        /// Суть алгоритма закючается в том, чтобы проходя n-1 раз по массиву, каждый проход сравнивать элементы попарно и, 
+        /// если порядок в паре неверный, выполнять обмен элементов.
+        /// </summary>
+        private static int[] BubbleSort(int[] array)
+        {
+            for (int i = 0; i < array.Length; i++)
+                for (int j = i + 1; j < array.Length; j++)
+                    if (array[i] > array[j])
+                        swap(array,i,j);    
+           
+            return array;
+        }
+        
+        private static int[] CombSor(int[] array)
+        {
+            int h = array.Length; // начальный шаг
+            bool swapped = false; // наличие перемещений
+
+            while ((h > 1) || swapped)
+            {
+                if (h > 1)
+                    h = (int)(h / 1.247330950103979); // Фактор уменьшения
+
+                swapped = false;
+
+                for (int i = 0; h + i < array.Length; ++i) // пока сравниваемый элемент в массиве
+                {
+                    /*если позиция текущего элемента следует после позиции другого элемента, 
+                      меняем их местами */
+                    if (array[i].CompareTo(array[i + h]) > 0)                              
+                    {
+                        swap(array,i,i+h);
+                        swapped = true;
+                    }
+                }
+            }
+            return array;
+        }
+        
         private static int[] MergeSort(int[] mas) //сортировка слиянием
         {
             if (mas.Length == 1) return mas;
@@ -63,9 +114,7 @@ namespace ProgrammingTechnology
                 if (index == 0 || Input[index - 1] <= Input[index]) index++;
                 else
                 {
-                    int cash = Input[index];
-                    Input[index] = Input[index - 1];
-                    Input[index - 1] = cash; 
+                    swap(Input,index,index-1);
                     index--;
                 }
             }
@@ -86,10 +135,8 @@ namespace ProgrammingTechnology
                 for (int i = left; i < right; i++)  //двигаемся слева направо
                 {
                     if (array[i] > array[i + 1]) // если следующий элемент меньше текущего,
-                    {                           // меняем их местами
-                        int t = array[i];
-                        array[i] = array[i + 1];
-                        array[i + 1] = t;
+                    { 
+                        swap(array,i,i+1);  // меняем их местами
                         flag = true;      // перемещения в этом цикле были
                     }
                 }
@@ -98,10 +145,8 @@ namespace ProgrammingTechnology
                 for (int i = right; i > left; i--)  //двигаемся справа налево
                 {
                     if (array[i - 1] > array[i]) // если предыдущий элемент больше текущего,
-                    {                           // меняем их местами
-                        int t = array[i];
-                        array[i] = array[i - 1];
-                        array[i - 1] = t;
+                    {    
+                        swap(array,i,i-1);  // меняем их местами
                         flag = true;    // перемещения в этом цикле были
                     }
                 }
