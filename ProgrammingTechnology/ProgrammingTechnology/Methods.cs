@@ -13,6 +13,39 @@ namespace ProgrammingTechnology
 
     static class Methods
     {
+        
+        //Александр Попов (Сортировка выбором)
+        private static int [] SelectionSort(int[] Insert)//сортировка выбором
+        {
+
+            int minEl, kesh;
+            int length = Insert.Length;
+
+            for (int index = 0; index < length - 1; index++)
+            {
+                //устанавливаем начальное значение минимального индекса 
+                minEl = index;
+
+                //находим индекс минимального элемента 
+                for (int j = index + 1; j < length; j++)
+                {
+                    if (Insert[j] < Insert[minEl])
+                    {
+                        minEl = j;
+                    }
+                }
+
+                //меняем местами значения
+                if (minEl != index)
+                {
+                    kesh = Insert[index];
+                    Insert[index] = Insert[minEl];
+                    Insert[minEl] = kesh;
+                }
+                return Insert;
+            }
+        }
+        
        /// <summary>
        /// Метод обмена местами двух элементов в массиве.
        /// </summary> 
@@ -61,7 +94,8 @@ namespace ProgrammingTechnology
             }       
             return array;
         }  
-      
+        
+        //Лебедев Михаил (Сортировка расческой)
         private static int[] CombSor(int[] array)
         {
             int h = array.Length; // начальный шаг
@@ -88,6 +122,7 @@ namespace ProgrammingTechnology
             return array;
         }
         
+        //Омеличева Наталья (Сортировка слиянием)
         private static int[] MergeSort(int[] mas) //сортировка слиянием
         {
             if (mas.Length == 1) return mas;
@@ -129,7 +164,8 @@ namespace ProgrammingTechnology
 
             return sorted;
         }
-
+        
+        //Мезенцев Александр (Гномья сортировка)
         private static int[] GnomeSort(int[] Input)
         {
             int index = 0;
@@ -145,6 +181,7 @@ namespace ProgrammingTechnology
             return Input;
         }
         
+        //Лебедев Михаил (Шейкерная сортировка)
         private static int [] Sheker(int[] array)
         {
             // левая и правая границы сортируемой области массива
