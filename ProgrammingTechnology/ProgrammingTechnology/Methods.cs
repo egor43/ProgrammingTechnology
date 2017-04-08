@@ -37,6 +37,26 @@ namespace ProgrammingTechnology
            
             return array;
         }
+        
+        /// <summary>
+        /// Сортировка пузырьковая с флагом.
+        /// Алгоритм, являеется модернизацией классической пузырьковой сортировки. Цикл перебора останавливается, когда элементы отсортированы.
+        /// </summary>
+        private static int[] FlagBubbleSort(int[] array)
+        {
+            bool flag = false;
+            for (int i = 0; i < array.Length && flag != true; i++){
+             flag = true;
+                for (int j = i + 1; j < array.Length; j++)
+                    if (array[i] > array[j]){
+                        swap(array,i,j);    
+                        flag = false;
+                    }
+            }
+            return array;
+        }
+        
+        
       /// <summary>
         /// Сортировка чет-нечет.
         /// Представляет собой модификацию пузырьковой сортировки разработанную для использования на параллельных процессорах. 
