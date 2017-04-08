@@ -8,38 +8,44 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ProgrammingTechnology
-{
-    //Класс "Controller"
-    //Представляет собой "мост" между пользовательским интерфейсом и бизнес-логикой программы
-    // 
-    //Ответственный: Мышко Е. 
 
-    public partial class Controller : Form
+namespace testNewForm
+{
+    public partial class Form1 : Form
     {
-        public Controller()
+        Form formLink; //используем как ссылку на объект для события btnClose_Click
+        public Form1()
         {
             InitializeComponent();
+            this.button1.AutoSize = true;
+            this.button1.Text = "Создать форму 2";
         }
 
-        private void Converter_TEST_Click(object sender, EventArgs e)
+        //Само событие "Click"
+        void btnClose_Click(object sender, EventArgs e)
         {
-            //Конвертер тестируем ТУТ !!!!!!!!!!!!!!!!!!!!!
+            formLink.Close(); //закрываем форму 2
         }
 
-        private void Decorator_TEST_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            //Декоратор тестируем ТУТ !!!!!!!!!!!!!!!!!!!!!
-        }
+                Form form2 = new Form();
+                formLink = form2;
+                form2.FormBorderStyle = FormBorderStyle.FixedToolWindow; //меняем стиль окна
+                form2.StartPosition = FormStartPosition.CenterScreen; //отобразить в центре экрана
+                form2.Text = "Новая форма номер 2"; //заголовок окна
+                form2.ShowInTaskbar = false; //не показывать созданную форму на панели задач
+                form2.Show(); //показать форму 2 (тоже самое, что form2.Visible = true;)  
 
-        private void Methods_TEST_Click(object sender, EventArgs e)
-        {
-            //Методы тестируем ТУТ !!!!!!!!!!!!!!!!!!!!!
-        }
+                Button btnClose = new Button();
+                btnClose.Parent = form2;
+                btnClose.Text = "Закрыть";
+                Point P = new Point();
+                P.X = ((form2.Width / 2) - (btnClose.Width / 2));
+                P.Y = (form2.Height - btnClose.Height * 3);
+                btnClose.Location = P; //указываем положение кнопки на форме
 
-        private void View_TEST_Click(object sender, EventArgs e)
-        {
-            //Вьюшку тестируем ТУТ !!!!!!!!!!!!!!!!!!!!!
+                btnClose.Click += new EventHandler(btnClose_Click); //подписываем кнопку на событие "Click"
         }
     }
 }
