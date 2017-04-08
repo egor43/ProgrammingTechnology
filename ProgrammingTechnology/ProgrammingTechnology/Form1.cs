@@ -29,6 +29,7 @@ namespace ProgrammingTechnology
         /// <param name="e"></param>
         private void Converter_TEST_Click(object sender, EventArgs e)
         {
+            //Конвертер тестируем ТУТ !!!!!!!!!!!!!!!!!!!!!
             string path = "D:\\Loads\\1.txt";
             char[] separators = new char[] { ',', ';' };
             int[] test;
