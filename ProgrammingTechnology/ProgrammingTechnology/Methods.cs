@@ -121,9 +121,26 @@ namespace ProgrammingTechnology
             }
             return array;
         }
-        
+
+        //Омеличева Наталья (Сортировка вставками)
+        private static int[] InsertionSort(int[] array)
+        {
+            for (int i = 1; i < array.Length; i++)
+            {
+                int value = array[i]; // текущее значение
+                int j = i;
+                while (j > 0 && array[j - 1] > value) // идем по массиву влево и переставляем текущее значение до тех пор, пока оно не станет больше значения слева
+                {
+                    array[j] = array[j - 1];
+                    j--;
+                }
+                array[j] = value;
+            }
+            return array;
+        }
+
         //Омеличева Наталья (Сортировка слиянием)
-        private static int[] MergeSort(int[] mas) //сортировка слиянием
+        private static int[] MergeSort(int[] mas)
         {
             if (mas.Length == 1) return mas;
             int middle = mas.Length / 2;
