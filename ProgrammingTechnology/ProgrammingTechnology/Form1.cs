@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -22,9 +22,26 @@ namespace ProgrammingTechnology
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Тест конвертера текстового файлов в массив int.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Converter_TEST_Click(object sender, EventArgs e)
         {
             //Конвертер тестируем ТУТ !!!!!!!!!!!!!!!!!!!!!
+            string path = "D:\\Loads\\1.txt";
+            char[] separators = new char[] { ',', ';' };
+            int[] test;
+            try
+            {
+                test = Converter.Convert(path, separators);
+                MessageBox.Show("Тест успешен.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void Decorator_TEST_Click(object sender, EventArgs e)
@@ -40,6 +57,9 @@ namespace ProgrammingTechnology
         private void View_TEST_Click(object sender, EventArgs e)
         {
             //Вьюшку тестируем ТУТ !!!!!!!!!!!!!!!!!!!!!
+
+            FormView f = new FormView();
+            f.Show();
         }
     }
 }
