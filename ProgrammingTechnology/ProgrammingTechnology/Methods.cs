@@ -13,6 +13,25 @@ namespace ProgrammingTechnology
 
     static class Methods
     {
+        //Для Пети
+        static private Dictionary<string,Func<int[], int[]>> DicMetSor=new Dictionary<string,Func<int[],int[]>> {
+                                                                                    {"SelectionSort", SelectionSort},
+                                                                                    {"BubbleSort", BubbleSort},
+                                                                                    {"OddEvenSort", OddEvenSort},
+                                                                                    {"CombSor",CombSor},
+                                                                                    {"InsertionSort",InsertionSort},
+                                                                                    {"MergeSort",MergeSort},
+                                                                                    {"GnomeSort",GnomeSort},
+                                                                                    {"Sheker",Sheker}};
+       //Для Егора, а потом для Пети
+       static private Dictionary<int, string> DicIdName =new Dictionary<int, string> {{1,"SelectionSort"},
+                                                                                      {2,"BubbleSort"},
+                                                                                      {3,"OddEvenSort"},
+                                                                                      {4,"CombSor"},
+                                                                                      {5,"InsertionSort"},
+                                                                                      {6,"MergeSort"},
+                                                                                      {7,"GnomeSort"},
+                                                                                      {8,"Sheker"}};
         
         //Александр Попов (Сортировка выбором)
         private static int [] SelectionSort(int[] Insert)//сортировка выбором
