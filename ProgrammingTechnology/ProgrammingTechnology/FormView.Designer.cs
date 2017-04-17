@@ -28,13 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.SuspendLayout();
             // 
             // FormView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(567, 386);
+            this.ClientSize = new System.Drawing.Size(810, 528);
             this.Name = "FormView";
             this.Text = "FormView";
             this.ResumeLayout(false);
@@ -42,5 +43,6 @@
         }
 
         #endregion
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }

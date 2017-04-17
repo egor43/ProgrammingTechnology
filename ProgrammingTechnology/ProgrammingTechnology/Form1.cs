@@ -47,7 +47,7 @@ namespace ProgrammingTechnology
         private void Decorator_TEST_Click(object sender, EventArgs e)
         {
             //Декоратор тестируем ТУТ !!!!!!!!!!!!!!!!!!!!!
-        }
+        }   
 
         private void Methods_TEST_Click(object sender, EventArgs e)
         {
@@ -58,7 +58,14 @@ namespace ProgrammingTechnology
         {
             //Вьюшку тестируем ТУТ !!!!!!!!!!!!!!!!!!!!!
 
-            FormView f = new FormView();
+            // Создаём тестовые значения. Этот кусок только для тестов. Потом удалить.
+            // ---------------------------------------------------------------------------------------
+            List<MethodInfo> listInfo = new List<MethodInfo>();
+            for (int i = 0; i < 10; i++)
+                listInfo.Add(new MethodInfo("testinfo" + i, i, 10-i));
+            // ---------------------------------------------------------------------------------------
+
+            FormView f = new FormView(listInfo);
             f.Show();
         }
     }
