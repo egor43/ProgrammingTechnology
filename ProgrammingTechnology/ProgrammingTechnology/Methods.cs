@@ -22,7 +22,8 @@ namespace ProgrammingTechnology
                                                                                     {"InsertionSort",InsertionSort},
                                                                                     {"MergeSort",MergeSort},
                                                                                     {"GnomeSort",GnomeSort},
-                                                                                    {"Sheker",Sheker}};
+                                                                                    {"Sheker",Sheker},
+                                                                                    {"FlagBubbleSort",FlagBubbleSort}};
        //Для Егора, а потом для Пети
        static private Dictionary<int, string> DicIdName =new Dictionary<int, string> {{1,"SelectionSort"},
                                                                                       {2,"BubbleSort"},
@@ -31,7 +32,8 @@ namespace ProgrammingTechnology
                                                                                       {5,"InsertionSort"},
                                                                                       {6,"MergeSort"},
                                                                                       {7,"GnomeSort"},
-                                                                                      {8,"Sheker"}};
+                                                                                      {8,"Sheker"},
+                                                                                      {9,"FlagBubbleSort"}};
         
         //Александр Попов (Сортировка выбором)
         private static int [] SelectionSort(int[] Insert)//сортировка выбором
@@ -250,6 +252,24 @@ namespace ProgrammingTechnology
                 left++; // сдвигаем левую границу на следующий элемент
             }
 
+            return array;
+        }
+        
+        /// <summary>
+        /// Сортировка пузырьковая с флагом.
+        /// Алгоритм, являеется модернизацией классической пузырьковой сортировки. Цикл перебора останавливается, когда элементы отсортированы.
+        /// </summary>
+        private static int[] FlagBubbleSort(int[] array)
+        {
+            bool flag = false;
+            for (int i = 0; i < array.Length && flag != true; i++){
+             flag = true;
+                for (int j = i + 1; j < array.Length; j++)
+                    if (array[i] > array[j]){
+                        swap(array,i,j);    
+                        flag = false;
+                    }
+            }
             return array;
         }
     }
