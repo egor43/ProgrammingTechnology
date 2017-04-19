@@ -14,5 +14,26 @@ namespace ProgrammingTechnology
 
     static class Methods
     {
+        static int[] ModifiedBubbleSort(int[] input)
+        {
+            int i = 0;
+            bool sorted = false;
+            while (!sorted)
+            {
+                sorted = true;
+                for (int j = 0; j < input.Length - i - 1; j++)
+                {
+                    if (input[j] > input[j + 1])
+                    {
+                        int cash = input[j];
+                        input[j] = input[j + 1];
+                        input[j + 1] = cash;
+                        sorted = false;
+                    }
+                }
+                ++i;
+            }
+            return input;
+        }
     }
 }
