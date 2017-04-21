@@ -58,15 +58,22 @@ namespace ProgrammingTechnology
         {
             //Вьюшку тестируем ТУТ !!!!!!!!!!!!!!!!!!!!!
 
-            // Создаём тестовые значения. Этот кусок только для тестов. Потом удалить.
-            // ---------------------------------------------------------------------------------------
-            List<MethodInfo> listInfo = new List<MethodInfo>();
-            for (int i = 0; i < 10; i++)
-                listInfo.Add(new MethodInfo("testinfo" + i, i, 10-i));
-            // ---------------------------------------------------------------------------------------
+            // Создаём демонстрационные данные. Потом удалить. 
+            List<List<MethodInfo>> lol = FormView.CreateSomeGraphData(10, 10);
 
-            FormView f = new FormView(listInfo);
+
+            // Это оставляем, lol можно заменить на нормальное название.
+            FormView f = new FormView(lol);
             f.Show();
+
+            // Запуск теста. Потом удалить.
+            Dictionary<string, bool> testCases = FormView.Test();
+            string testResult = "";
+
+            foreach (var test in testCases)
+                testResult += test.Key + "\t" + test.Value.ToString() + "\n";
+
+            MessageBox.Show(testResult);
         }
     }
 }
