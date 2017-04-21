@@ -14,7 +14,7 @@ namespace ProgrammingTechnology
     static class Methods
     {
         //Для Пети
-        static private Dictionary<string,Func<int[], int[]>> DicMetSor=new Dictionary<string,Func<int[],int[]>> {
+        static public Dictionary<string,Func<int[], int[]>> DicMetSor=new Dictionary<string,Func<int[],int[]>> {
                                                                                     {"SelectionSort", SelectionSort},
                                                                                     {"BubbleSort", BubbleSort},
                                                                                     {"OddEvenSort", OddEvenSort},
@@ -23,9 +23,10 @@ namespace ProgrammingTechnology
                                                                                     {"MergeSort",MergeSort},
                                                                                     {"GnomeSort",GnomeSort},
                                                                                     {"Sheker",Sheker},
-                                                                                    {"FlagBubbleSort",FlagBubbleSort}};
+                                                                                    {"FlagBubbleSort",FlagBubbleSort},
+                                                                                    {"ModifiedBubbleSort",ModifiedBubbleSort}};
        //Для Егора, а потом для Пети
-       static private Dictionary<int, string> DicIdName =new Dictionary<int, string> {{1,"SelectionSort"},
+       static public Dictionary<int, string> DicIdName =new Dictionary<int, string> {{1,"SelectionSort"},
                                                                                       {2,"BubbleSort"},
                                                                                       {3,"OddEvenSort"},
                                                                                       {4,"CombSor"},
@@ -33,7 +34,8 @@ namespace ProgrammingTechnology
                                                                                       {6,"MergeSort"},
                                                                                       {7,"GnomeSort"},
                                                                                       {8,"Sheker"},
-                                                                                      {9,"FlagBubbleSort"}};
+                                                                                      {9,"FlagBubbleSort"},
+                                                                                      {10,"ModifiedBubbleSort"}};
         
         //Александр Попов (Сортировка выбором)
         private static int [] SelectionSort(int[] Insert)//сортировка выбором
@@ -62,9 +64,9 @@ namespace ProgrammingTechnology
                     kesh = Insert[index];
                     Insert[index] = Insert[minEl];
                     Insert[minEl] = kesh;
-                }
-                return Insert;
+                }                
             }
+            return Insert;
         }
         
        /// <summary>
