@@ -272,5 +272,26 @@ namespace ProgrammingTechnology
             }
             return array;
         }
+        
+        //Мезенцев Александр (Пузырьковая модиф.)
+        private static int[] ModifiedBubbleSort(int[] input)
+        {
+            int i = 0;
+            bool sorted = false;
+            while (!sorted)
+            {
+                sorted = true;
+                for (int j = 0; j < input.Length - i - 1; j++)
+                {
+                    if (input[j] > input[j + 1])
+                    {
+                        swap(input,j,j+1);
+                        sorted = false;
+                    }
+                }
+                ++i;
+            }
+            return input;
+        }
     }
 }
