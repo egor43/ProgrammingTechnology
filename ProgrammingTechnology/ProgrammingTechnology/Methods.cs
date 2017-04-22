@@ -24,9 +24,10 @@ namespace ProgrammingTechnology
                                                                                     {"GnomeSort",GnomeSort},
                                                                                     {"Sheker",Sheker},
                                                                                     {"FlagBubbleSort",FlagBubbleSort},
-                                                                                    {"ModifiedBubbleSort",ModifiedBubbleSort}};
+                                                                                    {"ModifiedBubbleSort",ModifiedBubbleSort},
+                                                                                    {"Pyramid_Sort",Pyramid_Sort}};
        //Для Егора, а потом для Пети
-       static public Dictionary<int, string> DicIdName =new Dictionary<int, string> {{1,"SelectionSort"},
+       static public Dictionary<int, string> DicIdName =new Dictionary<int, string>  {{1,"SelectionSort"},
                                                                                       {2,"BubbleSort"},
                                                                                       {3,"OddEvenSort"},
                                                                                       {4,"CombSor"},
@@ -35,7 +36,8 @@ namespace ProgrammingTechnology
                                                                                       {7,"GnomeSort"},
                                                                                       {8,"Sheker"},
                                                                                       {9,"FlagBubbleSort"},
-                                                                                      {10,"ModifiedBubbleSort"}};
+                                                                                      {10,"ModifiedBubbleSort"},
+                                                                                      {11,"Pyramid_Sort"}};
         
         //Александр Попов (Сортировка выбором)
         private static int [] SelectionSort(int[] Insert)//сортировка выбором
@@ -295,5 +297,54 @@ namespace ProgrammingTechnology
             }
             return input;
         }
+        /// <summary> 
+        /// построение и сортировка дерева 
+        /// </summary> 
+        /// <param name="arr">массив</param> 
+        /// <param name="i">позиция,которую сортируем</param> 
+        /// <param name="N">length arr</param> 
+        /// <returns></returns> 
+        private static int pyramid(int[] arr, int i, int N) 
+        { 
+            int b;//пустая переменная для записи 
+            int imax = 2 * i + 1;//определяет позицию максимального из 2-х потомков по дефолту решено что левый 
+            if ((2 * i + 2) < N)//проверка на потомков
+                if (arr[2 * i + 1] < arr[2 * i + 2]) imax = 2 * i + 2; 
+                    if (imax >= N) return i; 
+                        if (arr[i] < arr[imax])//если один из потомков больше то заменяем 
+                        { 
+                            swap(arr,i,imax);
+                            if (imax < N / 2) i = imax;//чтобы не делать лишний перебор 
+                        } 
+            return i; 
+         } 
+
+        /// </summary> 
+        /// <param name="arr">массив</param> 
+        /// <param name="len">длина массива</param> 
+        private static void Pyramid_Sort(int [] arr, int len) 
+        { 
+            //построение дерева 
+            for (int i = len / 2 - 1; i >= 0;--i) 
+            { 
+                long pred_i = i; 
+                i = pyramid(arr, i, len); 
+                if (pred_i != i) ++i; 
+            } 
+
+            //сортировка 
+            int b;//пустая переменная для записи 
+            for (int k = len - 1; k > 0; --k) 
+            { 
+                swap(arr,0,k);
+                int i = 0, prev_i = -1; 
+                while (i != prev_i) 
+                { 
+                    prev_i = i; 
+                    i = pyramid(arr, i, k); 
+                } 
+            } 
+        }
+        
     }
 }
