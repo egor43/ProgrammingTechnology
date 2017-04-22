@@ -10,7 +10,7 @@ namespace ProgrammingTechnology
     //
     //Ответственный: Мышко Е. 
 
-    struct MethodInfo
+   public struct MethodInfo
     {
         //Переменные:
         public string name; //Имя метода

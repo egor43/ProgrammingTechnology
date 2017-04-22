@@ -47,7 +47,7 @@ namespace ProgrammingTechnology
         private void Decorator_TEST_Click(object sender, EventArgs e)
         {
             //Декоратор тестируем ТУТ !!!!!!!!!!!!!!!!!!!!!
-        }
+        }   
 
         private void Methods_TEST_Click(object sender, EventArgs e)
         {
@@ -57,6 +57,23 @@ namespace ProgrammingTechnology
         private void View_TEST_Click(object sender, EventArgs e)
         {
             //Вьюшку тестируем ТУТ !!!!!!!!!!!!!!!!!!!!!
+
+            // Создаём демонстрационные данные. Потом удалить. 
+            List<List<MethodInfo>> lol = FormView.CreateSomeGraphData(10, 10);
+
+
+            // Это оставляем, lol можно заменить на нормальное название.
+            FormView f = new FormView(lol);
+            f.Show();
+
+            // Запуск теста. Потом удалить.
+            Dictionary<string, bool> testCases = FormView.Test();
+            string testResult = "";
+
+            foreach (var test in testCases)
+                testResult += test.Key + "\t" + test.Value.ToString() + "\n";
+
+            MessageBox.Show(testResult);
         }
     }
 }
