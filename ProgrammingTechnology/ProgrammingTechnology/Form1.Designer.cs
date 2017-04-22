@@ -32,6 +32,7 @@
             this.Decorator_TEST = new System.Windows.Forms.Button();
             this.Methods_TEST = new System.Windows.Forms.Button();
             this.View_TEST = new System.Windows.Forms.Button();
+            this.All_TEST = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Converter_TEST
@@ -78,11 +79,23 @@
             this.View_TEST.UseVisualStyleBackColor = false;
             this.View_TEST.Click += new System.EventHandler(this.View_TEST_Click);
             // 
+            // All_TEST
+            // 
+            this.All_TEST.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.All_TEST.Location = new System.Drawing.Point(315, 120);
+            this.All_TEST.Name = "All_TEST";
+            this.All_TEST.Size = new System.Drawing.Size(191, 137);
+            this.All_TEST.TabIndex = 4;
+            this.All_TEST.Text = "All TEST";
+            this.All_TEST.UseVisualStyleBackColor = false;
+            this.All_TEST.Click += new System.EventHandler(this.All_TEST_Click);
+            // 
             // Controller
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(535, 397);
+            this.Controls.Add(this.All_TEST);
             this.Controls.Add(this.View_TEST);
             this.Controls.Add(this.Methods_TEST);
             this.Controls.Add(this.Decorator_TEST);
@@ -99,6 +112,7 @@
         private System.Windows.Forms.Button Decorator_TEST;
         private System.Windows.Forms.Button Methods_TEST;
         private System.Windows.Forms.Button View_TEST;
+        private System.Windows.Forms.Button All_TEST;
     }
 }
 

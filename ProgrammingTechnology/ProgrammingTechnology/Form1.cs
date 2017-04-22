@@ -75,5 +75,59 @@ namespace ProgrammingTechnology
 
             MessageBox.Show(testResult);
         }
+
+        private void All_TEST_Click(object sender, EventArgs e)
+        {
+            // Конвертер:
+            string path = "1.txt";
+            char[] separators = new char[] { ',', ';' };
+            int[] test = new int [30000000];
+            try
+            {
+                test = Converter.Convert(path, separators);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+
+            path = "2.txt";
+            separators = new char[] { ',', ';' };
+            int[] test_2 = new int[30000000];
+            try
+            {
+                test_2 = Converter.Convert(path, separators);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            // Декоратор:
+            List<int> methods_id = new List<int> { 1, 2, 3, 4, 5 };
+            List<MethodInfo> result_method_info = new List<MethodInfo>();
+            result_method_info = Decorator.RunMethods(methods_id, test);
+            List<List<MethodInfo>> list_results = new List<List<MethodInfo>>();
+            list_results.Add(Decorator.RunMethods(methods_id, test));
+
+            methods_id.Clear();
+            methods_id = new List<int> { 6, 7, 8 };
+          
+            list_results.Add(Decorator.RunMethods(methods_id, test_2));
+
+            // Вьюшка:
+            FormView f = new FormView(list_results);
+            f.Show();
+
+            // Запуск теста. Потом удалить.
+            Dictionary<string, bool> testCases = FormView.Test();
+            string testResult = "";
+
+            foreach (var tst in testCases)
+                testResult += tst.Key + "\t" + tst.Value.ToString() + "\n";
+
+            MessageBox.Show(testResult);
+        }
     }
 }
