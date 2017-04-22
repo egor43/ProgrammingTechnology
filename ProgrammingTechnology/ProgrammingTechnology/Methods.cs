@@ -322,8 +322,9 @@ namespace ProgrammingTechnology
         /// </summary> 
         /// <param name="arr">массив</param> 
         /// <param name="len">длина массива</param> 
-        private static void Pyramid_Sort(int [] arr, int len) 
+        private static void Pyramid_Sort(int [] arr) 
         { 
+            int len = arr.Length;
             //построение дерева 
             for (int i = len / 2 - 1; i >= 0;--i) 
             { 
