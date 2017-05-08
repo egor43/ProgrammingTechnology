@@ -167,7 +167,7 @@ namespace ProgrammingTechnology
         //Омеличева Наталья (Сортировка слиянием)
         private static int[] MergeSort(int[] mas)
         {
-            if (mas.Length == 1) return mas;
+            if (mas.Length <= 1) return mas;
             int middle = mas.Length / 2;
 
             // массивы для разбиения входного массива на две части
@@ -322,8 +322,9 @@ namespace ProgrammingTechnology
         /// </summary> 
         /// <param name="arr">массив</param> 
         /// <param name="len">длина массива</param> 
-        private static void Pyramid_Sort(int [] arr, int len) 
-        { 
+        private static int [] Pyramid_Sort(int [] arr) 
+        {
+            int len = arr.Length;
             //построение дерева 
             for (int i = len / 2 - 1; i >= 0;--i) 
             { 
@@ -343,7 +344,32 @@ namespace ProgrammingTechnology
                     prev_i = i; 
                     i = pyramid(arr, i, k); 
                 } 
-            } 
+            }
+            return arr; 
+        }
+
+        public static Dictionary<string, string> Test()
+        {
+            Dictionary<string, string> tmp = new Dictionary<string, string>();//Словарь Имя метода и t или f (прошел тест или нет)
+
+            int[] t1 = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+            int[] t2 = new int[] { };
+            int[] t3 = new int[] { 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 };
+
+            Sheker(t2);
+            SelectionSort(t2);
+            BubbleSort(t2);
+            OddEvenSort(t2);
+            CombSor(t2);
+            InsertionSort(t2);
+            MergeSort(t2);
+            GnomeSort(t2);
+            FlagBubbleSort(t2);
+            ModifiedBubbleSort(t2);
+            Pyramid_Sort(t2);
+
+
+            return tmp;
         }
         
     }
