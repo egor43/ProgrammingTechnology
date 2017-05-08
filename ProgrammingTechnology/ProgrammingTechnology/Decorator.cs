@@ -50,14 +50,14 @@ namespace ProgrammingTechnology
         // Вызывает метод из пары "метод+имя" methodInputInfo для массива array.
         private static MethodInfo RunMethod(MethodInfo_Pair methodInputInfo, int[] array)
         {
-            MethodInfo outStruct; int[] sortedArray; int time;
-
-            time = DateTime.Now.Second;
+            MethodInfo outStruct; int[] sortedArray;
+            var stopWatch= System.Diagnostics.Stopwatch.StartNew();
+            
             sortedArray = methodInputInfo.Value(array);
-            time -= DateTime.Now.Second;
+            stopWatch.Stop();
 
             outStruct.name      = methodInputInfo.Key;
-            outStruct.time      = time;                 // Время в секундах.
+            outStruct.time      = (int) (stopWatch.ElapsedMilliseconds/1000);                 // Время в секундах.
             outStruct.capacity  = sortedArray.Length;   // Спорный вопрос: на кой черт метод возвращает размер обработанного массива,
                                                         // если мы вызываем все методы для одного массива за раз и этот размер не меняется со временем.
 
