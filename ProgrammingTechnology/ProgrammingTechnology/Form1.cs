@@ -22,15 +22,32 @@ namespace ProgrammingTechnology
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Тест конвертера текстового файлов в массив int.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Converter_TEST_Click(object sender, EventArgs e)
         {
             //Конвертер тестируем ТУТ !!!!!!!!!!!!!!!!!!!!!
+            string path = "D:\\Loads\\1.txt";
+            char[] separators = new char[] { ',', ';' };
+            int[] test;
+            try
+            {
+                test = Converter.Convert(path, separators);
+                MessageBox.Show("Тест успешен.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void Decorator_TEST_Click(object sender, EventArgs e)
         {
             //Декоратор тестируем ТУТ !!!!!!!!!!!!!!!!!!!!!
-        }
+        }   
 
         private void Methods_TEST_Click(object sender, EventArgs e)
         {
@@ -40,6 +57,77 @@ namespace ProgrammingTechnology
         private void View_TEST_Click(object sender, EventArgs e)
         {
             //Вьюшку тестируем ТУТ !!!!!!!!!!!!!!!!!!!!!
+
+            // Создаём демонстрационные данные. Потом удалить. 
+            List<List<MethodInfo>> lol = FormView.CreateSomeGraphData(10, 10);
+
+
+            // Это оставляем, lol можно заменить на нормальное название.
+            FormView f = new FormView(lol);
+            f.Show();
+
+            // Запуск теста. Потом удалить.
+            Dictionary<string, bool> testCases = FormView.Test();
+            string testResult = "";
+
+            foreach (var test in testCases)
+                testResult += test.Key + "\t" + test.Value.ToString() + "\n";
+
+            MessageBox.Show(testResult);
+        }
+
+        private void All_TEST_Click(object sender, EventArgs e)
+        {
+            // Конвертер:
+            string path = "1.txt";
+            char[] separators = new char[] { ',', ';' };
+            int[] test = new int [30000000];
+            try
+            {
+                test = Converter.Convert(path, separators);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+
+            path = "2.txt";
+            separators = new char[] { ',', ';' };
+            int[] test_2 = new int[30000000];
+            try
+            {
+                test_2 = Converter.Convert(path, separators);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            // Декоратор:
+            List<int> methods_id = new List<int> { 1, 2, 3, 4, 5 };
+            List<MethodInfo> result_method_info = new List<MethodInfo>();
+            result_method_info = Decorator.RunMethods(methods_id, test);
+            List<List<MethodInfo>> list_results = new List<List<MethodInfo>>();
+            list_results.Add(Decorator.RunMethods(methods_id, test));
+
+            methods_id.Clear();
+            methods_id = new List<int> { 6, 7, 8 };
+          
+            list_results.Add(Decorator.RunMethods(methods_id, test_2));
+
+            // Вьюшка:
+            FormView f = new FormView(list_results);
+            f.Show();
+
+            // Запуск теста. Потом удалить.
+            Dictionary<string, bool> testCases = FormView.Test();
+            string testResult = "";
+
+            foreach (var tst in testCases)
+                testResult += tst.Key + "\t" + tst.Value.ToString() + "\n";
+
+            MessageBox.Show(testResult);
         }
     }
 }
