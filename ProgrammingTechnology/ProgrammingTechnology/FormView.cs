@@ -10,6 +10,11 @@ using System.Windows.Forms.DataVisualization.Charting;
 
 namespace ProgrammingTechnology
 {
+    //  Класс "FormView"
+    //  Управляет одноимённой формой, нужен для визуального представления работы методов.
+    // 
+    //  Ответственный: Манукянц А. 
+
     public partial class FormView : Form
     {   
         /// <summary>
@@ -34,10 +39,11 @@ namespace ProgrammingTechnology
 
             // Для проверки валидности данных.
             bool canDraw = true;
+            List<MethodInfo> listInfo = null;
             try
             {
                 // Cортируем, проверяем, улучшаем данные.
-                info = CheckInfo(info);
+                listInfo = CheckInfo(info);
             }
             catch (ViewException exc)
             {
@@ -52,7 +58,7 @@ namespace ProgrammingTechnology
 
             // Если данные валидны рисуем график по проверенным данным.
             if (canDraw)
-            DrawGraph(info);
+                DrawGraph(listInfo);
         }
 
         /// <summary>
@@ -66,42 +72,40 @@ namespace ProgrammingTechnology
         }
 
         /// <summary>
-        /// Проверка данных на валидность. Сортировка по величине отсортированных массивов. Если что-то не так – ничего не рисуем и пишем пользователю, что он не прав.
+        /// Проверка данных на валидность. Сортировка по величине отсортированных массивов. Если что-то не так – ничего не рисуем и пишем пользователю, что он не прав
         /// </summary>
         /// <param name="info"></param>
         /// <returns></returns>
-        List<List<MethodInfo>> CheckInfo(List<List<MethodInfo>> info)
+        List<MethodInfo> CheckInfo(List<List<MethodInfo>> info)
         {
             if (info.Count == 0) throw new ViewException("Нет данных о методах. Нечего рисовать.");
 
-            // Сортируем будущие точки (массив методов) по возрастанию capacity
-            for (int k = 0; k < info.Count;)
-            {
-                if (info[k].Count == 0) info.RemoveAt(k); // Удаляем пустой List о методе.
-                else
-                { 
-                MethodInfo tempInfo;
-                for (int i = 0; i < info[k].Count; i++)
-                    for (int j = i + 1; j < info[k].Count; j++)
-                        if (info[k][j].capacity < info[k][i].capacity)
-                        {
-                            tempInfo = info[k][j];
-                            info[k][j] = info[k][i];
-                            info[k][i] = tempInfo;
-                        }
-                    k++;
-                }
-            }
-            if (info.Count == 0) throw new ViewException("Данные были, но неверные. Всё удалено. Нечего рисовать.");
+            // Формирование нового списка, включающего в себя все подсписки старого.
+            List<MethodInfo> listInfo = new List<MethodInfo>();
+            foreach (List<MethodInfo> lol in info)
+                listInfo.AddRange(lol);
 
-            return info;
+            // Сортировка нового списка по значению capacity
+            MethodInfo tempInfo;
+            for (int i = 0; i < listInfo.Count; i++)
+                for (int j = i + 1; j < listInfo.Count; j++)
+                    if (listInfo[j].capacity < listInfo[i].capacity)
+                        {
+                            tempInfo = listInfo[j];
+                            listInfo[j] = listInfo[i];
+                            listInfo[i] = tempInfo;
+                        }
+
+            if (listInfo.Count == 0) throw new ViewException("Данные были, но неверные. Всё удалено. Нечего рисовать.");
+
+            return listInfo;
         }
 
         /// <summary>
         /// Создание Chart и отрисовка графиков по данным
         /// </summary>
         /// <param name="info">Данные</param>
-        void DrawGraph(List<List<MethodInfo>> info)
+        void DrawGraph(List<MethodInfo> info)
         {
             // Создаем элемент Chart и настраиваем его.
             Chart crtGraph = new Chart();
@@ -114,8 +118,6 @@ namespace ProgrammingTechnology
             ChartArea methodsArea = new ChartArea("Sort methods");
             methodsArea.AxisX.Title = "Capacity";
             methodsArea.AxisY.Title = "Time";
-            methodsArea.CursorX.IsUserEnabled = true;
-            methodsArea.CursorY.IsUserEnabled = true;
             crtGraph.ChartAreas.Add(methodsArea);
 
             // Добавляем в Chart область имён методов с цветом их графиков.
@@ -123,23 +125,29 @@ namespace ProgrammingTechnology
             methodsLegend.Title = "Methods Names";
             crtGraph.Legends.Add(methodsLegend);
 
-            foreach (List<MethodInfo> oneMethodAllInfo in info)
+            foreach (MethodInfo methodInfo in info)
             {
-                // Создаем пустой набор точек для рисования графика. Настраиваем.
-                Series srsPoints = new Series(oneMethodAllInfo.First().name);
-                srsPoints.ChartType = SeriesChartType.Line;
-                srsPoints.ChartArea = "Sort methods";
-                srsPoints.Legend = "MethodsNames";
-                srsPoints.IsVisibleInLegend = true;
-                srsPoints.BorderWidth = 2;
-
-                // Указываем точки графиков по длинам обрабатываемых массивов и времени их обработки
-                foreach (MethodInfo aboutMethod in oneMethodAllInfo)
+                // Если встречается имя метода, не отрисованного ранее.
+                if (crtGraph.Series.IndexOf(methodInfo.name) == -1)
                 {
-                    srsPoints.Points.AddXY(aboutMethod.capacity, aboutMethod.time);
+                    // Создаем пустой набор точек для рисования графика. Настраиваем.
+                    Series srsPoints = new Series(methodInfo.name);
+                    srsPoints.ChartType = SeriesChartType.Line;
+                    srsPoints.ChartArea = "Sort methods";
+                    srsPoints.Legend = "MethodsNames";
+                    srsPoints.IsVisibleInLegend = true;
+                    srsPoints.BorderWidth = 2;
+
+                    // Создание первой нулевой точки. Нужно только в этом проекте. // 
+                    srsPoints.Points.AddXY(0, 0);
+                    // ---------------------------------------------------------- //
+
+                    // Добавляем созданный набор точек в Chart
+                    crtGraph.Series.Add(srsPoints);
                 }
-                // Добавляем созданный набор точек в Chart
-                crtGraph.Series.Add(srsPoints);
+                // Указываем точки графиков по длинам обрабатываемых массивов и времени их обработки
+                crtGraph.Series.FindByName(methodInfo.name).Points.AddXY(methodInfo.capacity, methodInfo.time);
+
             }
         }
 
@@ -169,6 +177,27 @@ namespace ProgrammingTechnology
         }
 
         /// <summary>
+        /// Запуск тестов вьюшки с помощью директив препроцессора
+        /// </summary>
+        public static void RunTest()
+        {
+#if false // заменить false на DEBUG для вызова метода Test() при дебагинге
+            // Вызываем метод Test();
+            Dictionary<string, bool> viewTestCases = FormView.Test();
+            string viewTestResult = "";
+
+            foreach (var test in viewTestCases)
+                viewTestResult += test.Key + "\t" + test.Value.ToString() + "\n";
+
+            MessageBox.Show(viewTestResult);
+#else
+            //  Визуальный тест вьюшки.
+            FormView f = new FormView(FormView.CreateSomeGraphData(10, 10));
+            f.Show();
+#endif
+        }
+
+        /// <summary>
         /// Тест вьюшки
         /// </summary>
         /// <returns>Всё ли верно</returns>
@@ -194,9 +223,9 @@ namespace ProgrammingTechnology
             f = new FormView(lol);
             crtGraph = (Chart)f.Controls["crtGraph"];
             if (crtGraph.Legends.Count == 1 && crtGraph.ChartAreas.Count == 1)
-                testCases.Add("FormView(List) : Всё хорошо", true);
+                testCases.Add("FormView(List) : Валидные данные", true);
             else
-                testCases.Add("FormView(List) : Всё хорошо", false);
+                testCases.Add("FormView(List) : Валидные данные", false);
                 
             // Список без данных
             lol = CreateSomeGraphData(0, 10);
@@ -227,13 +256,13 @@ namespace ProgrammingTechnology
                 testCases.Add("InitializeForm", false);
 
             // CheckInfo
-            if (testCases["FormView(List) : Всё хорошо"] && testCases["FormView(List) : 0 методов"] && testCases["FormView(List) : 0 прогонов"])
+            if (testCases["FormView(List) : Валидные данные"] && testCases["FormView(List) : 0 методов"] && testCases["FormView(List) : 0 прогонов"])
                 testCases.Add("CheckInfo", true);
             else
                 testCases.Add("CheckInfo", false);
 
             // DrawGraph
-            f.DrawGraph(CreateSomeGraphData(10, 10));
+            f.DrawGraph(f.CheckInfo(CreateSomeGraphData(10, 10)));
             crtGraph = (Chart)f.Controls["crtGraph"];
             if (crtGraph.Series.First().Points.First().XValue == 0)
                 testCases.Add("DrawGraph", true);
@@ -241,6 +270,16 @@ namespace ProgrammingTechnology
                 testCases.Add("DrawGraph", false);
 
             return testCases;
+
+            /* Запуск теста. Скопировать в основную форму для автоматического тестирования вьюшки.
+                Dictionary<string, bool> viewTestCases = FormView.Test();
+                string viewTestResult = "";
+
+                foreach (var test in viewTestCases)
+                    viewTestResult += test.Key + "\t" + test.Value.ToString() + "\n";
+
+                MessageBox.Show(viewTestResult);
+            */
         }
     }
 

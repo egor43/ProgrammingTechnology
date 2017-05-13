@@ -58,22 +58,7 @@ namespace ProgrammingTechnology
         {
             //Вьюшку тестируем ТУТ !!!!!!!!!!!!!!!!!!!!!
 
-            // Создаём демонстрационные данные. Потом удалить. 
-            List<List<MethodInfo>> lol = FormView.CreateSomeGraphData(10, 10);
-
-
-            // Это оставляем, lol можно заменить на нормальное название.
-            FormView f = new FormView(lol);
-            f.Show();
-
-            // Запуск теста. Потом удалить.
-            Dictionary<string, bool> testCases = FormView.Test();
-            string testResult = "";
-
-            foreach (var test in testCases)
-                testResult += test.Key + "\t" + test.Value.ToString() + "\n";
-
-            MessageBox.Show(testResult);
+            FormView.RunTest();
         }
 
         private void All_TEST_Click(object sender, EventArgs e)
@@ -105,29 +90,20 @@ namespace ProgrammingTechnology
             }
 
             // Декоратор:
-            List<int> methods_id = new List<int> { 1, 2, 3, 4, 5 };
+            List<int> methods_id = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8 };
             List<MethodInfo> result_method_info = new List<MethodInfo>();
             result_method_info = Decorator.RunMethods(methods_id, test);
             List<List<MethodInfo>> list_results = new List<List<MethodInfo>>();
             list_results.Add(Decorator.RunMethods(methods_id, test));
 
             methods_id.Clear();
-            methods_id = new List<int> { 6, 7, 8 };
+            methods_id = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8 };
           
             list_results.Add(Decorator.RunMethods(methods_id, test_2));
 
             // Вьюшка:
             FormView f = new FormView(list_results);
             f.Show();
-
-            // Запуск теста. Потом удалить.
-            Dictionary<string, bool> testCases = FormView.Test();
-            string testResult = "";
-
-            foreach (var tst in testCases)
-                testResult += tst.Key + "\t" + tst.Value.ToString() + "\n";
-
-            MessageBox.Show(testResult);
         }
     }
 }
