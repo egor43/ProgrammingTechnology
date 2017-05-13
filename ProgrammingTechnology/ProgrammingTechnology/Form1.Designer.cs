@@ -28,91 +28,85 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.Converter_TEST = new System.Windows.Forms.Button();
-            this.Decorator_TEST = new System.Windows.Forms.Button();
-            this.Methods_TEST = new System.Windows.Forms.Button();
-            this.View_TEST = new System.Windows.Forms.Button();
-            this.All_TEST = new System.Windows.Forms.Button();
+            this.MethodBox = new System.Windows.Forms.GroupBox();
+            this.LoadScreen = new System.Windows.Forms.Panel();
+            this.ProgressBar = new System.Windows.Forms.ProgressBar();
+            this.lblStart = new System.Windows.Forms.Label();
+            this.btnStart = new System.Windows.Forms.Button();
+            this.LoadScreen.SuspendLayout();
             this.SuspendLayout();
             // 
-            // Converter_TEST
+            // MethodBox
             // 
-            this.Converter_TEST.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.Converter_TEST.Location = new System.Drawing.Point(47, 33);
-            this.Converter_TEST.Name = "Converter_TEST";
-            this.Converter_TEST.Size = new System.Drawing.Size(238, 54);
-            this.Converter_TEST.TabIndex = 0;
-            this.Converter_TEST.Text = "Converter TEST";
-            this.Converter_TEST.UseVisualStyleBackColor = false;
-            this.Converter_TEST.Click += new System.EventHandler(this.Converter_TEST_Click);
+            this.MethodBox.Location = new System.Drawing.Point(12, 12);
+            this.MethodBox.Name = "MethodBox";
+            this.MethodBox.Size = new System.Drawing.Size(176, 265);
+            this.MethodBox.TabIndex = 0;
+            this.MethodBox.TabStop = false;
+            this.MethodBox.Text = "Выбор методов:";
             // 
-            // Decorator_TEST
+            // LoadScreen
             // 
-            this.Decorator_TEST.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.Decorator_TEST.Location = new System.Drawing.Point(47, 120);
-            this.Decorator_TEST.Name = "Decorator_TEST";
-            this.Decorator_TEST.Size = new System.Drawing.Size(238, 54);
-            this.Decorator_TEST.TabIndex = 1;
-            this.Decorator_TEST.Text = "Decorator TEST";
-            this.Decorator_TEST.UseVisualStyleBackColor = false;
-            this.Decorator_TEST.Click += new System.EventHandler(this.Decorator_TEST_Click);
+            this.LoadScreen.Controls.Add(this.btnStart);
+            this.LoadScreen.Controls.Add(this.lblStart);
+            this.LoadScreen.Controls.Add(this.ProgressBar);
+            this.LoadScreen.Location = new System.Drawing.Point(1, 0);
+            this.LoadScreen.Name = "LoadScreen";
+            this.LoadScreen.Size = new System.Drawing.Size(523, 511);
+            this.LoadScreen.TabIndex = 1;
             // 
-            // Methods_TEST
+            // ProgressBar
             // 
-            this.Methods_TEST.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.Methods_TEST.Location = new System.Drawing.Point(47, 203);
-            this.Methods_TEST.Name = "Methods_TEST";
-            this.Methods_TEST.Size = new System.Drawing.Size(238, 54);
-            this.Methods_TEST.TabIndex = 2;
-            this.Methods_TEST.Text = "Methods TEST";
-            this.Methods_TEST.UseVisualStyleBackColor = false;
-            this.Methods_TEST.Click += new System.EventHandler(this.Methods_TEST_Click);
+            this.ProgressBar.Location = new System.Drawing.Point(55, 253);
+            this.ProgressBar.Maximum = 80;
+            this.ProgressBar.Name = "ProgressBar";
+            this.ProgressBar.Size = new System.Drawing.Size(407, 23);
+            this.ProgressBar.Step = 20;
+            this.ProgressBar.TabIndex = 0;
+            this.ProgressBar.Visible = false;
             // 
-            // View_TEST
+            // lblStart
             // 
-            this.View_TEST.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.View_TEST.Location = new System.Drawing.Point(47, 285);
-            this.View_TEST.Name = "View_TEST";
-            this.View_TEST.Size = new System.Drawing.Size(238, 54);
-            this.View_TEST.TabIndex = 3;
-            this.View_TEST.Text = "View TEST";
-            this.View_TEST.UseVisualStyleBackColor = false;
-            this.View_TEST.Click += new System.EventHandler(this.View_TEST_Click);
+            this.lblStart.AutoSize = true;
+            this.lblStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblStart.Location = new System.Drawing.Point(122, 196);
+            this.lblStart.Name = "lblStart";
+            this.lblStart.Size = new System.Drawing.Size(264, 39);
+            this.lblStart.TabIndex = 1;
+            this.lblStart.Text = "Sorting Methods";
             // 
-            // All_TEST
+            // btnStart
             // 
-            this.All_TEST.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.All_TEST.Location = new System.Drawing.Point(315, 120);
-            this.All_TEST.Name = "All_TEST";
-            this.All_TEST.Size = new System.Drawing.Size(191, 137);
-            this.All_TEST.TabIndex = 4;
-            this.All_TEST.Text = "All TEST";
-            this.All_TEST.UseVisualStyleBackColor = false;
-            this.All_TEST.Click += new System.EventHandler(this.All_TEST_Click);
+            this.btnStart.Location = new System.Drawing.Point(160, 253);
+            this.btnStart.Name = "btnStart";
+            this.btnStart.Size = new System.Drawing.Size(187, 41);
+            this.btnStart.TabIndex = 2;
+            this.btnStart.Text = "Start";
+            this.btnStart.UseVisualStyleBackColor = true;
+            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
             // Controller
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(535, 397);
-            this.Controls.Add(this.All_TEST);
-            this.Controls.Add(this.View_TEST);
-            this.Controls.Add(this.Methods_TEST);
-            this.Controls.Add(this.Decorator_TEST);
-            this.Controls.Add(this.Converter_TEST);
+            this.ClientSize = new System.Drawing.Size(526, 511);
+            this.Controls.Add(this.LoadScreen);
+            this.Controls.Add(this.MethodBox);
             this.Name = "Controller";
             this.Text = "Controller";
+            this.LoadScreen.ResumeLayout(false);
+            this.LoadScreen.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button Converter_TEST;
-        private System.Windows.Forms.Button Decorator_TEST;
-        private System.Windows.Forms.Button Methods_TEST;
-        private System.Windows.Forms.Button View_TEST;
-        private System.Windows.Forms.Button All_TEST;
+        private System.Windows.Forms.GroupBox MethodBox;
+        private System.Windows.Forms.Panel LoadScreen;
+        private System.Windows.Forms.Label lblStart;
+        private System.Windows.Forms.ProgressBar ProgressBar;
+        private System.Windows.Forms.Button btnStart;
     }
 }
 

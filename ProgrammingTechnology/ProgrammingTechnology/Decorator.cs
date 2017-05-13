@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace ProgrammingTechnology
 {
+    using System.Diagnostics;
     //Класс "Decorator" - статический
     //Представляет собой инструмент для обработки методов.
     //Класс обрабатывает полезную информацию о ходе работы методов.
@@ -51,13 +52,14 @@ namespace ProgrammingTechnology
         private static MethodInfo RunMethod(MethodInfo_Pair methodInputInfo, int[] array)
         {
             MethodInfo outStruct; int[] sortedArray; int time;
+            Stopwatch timer = new Stopwatch();
 
-            time = DateTime.Now.Second;
+            timer.Start();
             sortedArray = methodInputInfo.Value(array);
-            time -= DateTime.Now.Second;
+            timer.Stop();
 
             outStruct.name      = methodInputInfo.Key;
-            outStruct.time      = time;                 // Время в секундах.
+            outStruct.time      = (int)timer.Elapsed.TotalSeconds;                 // Время в секундах.
             outStruct.capacity  = sortedArray.Length;   // Спорный вопрос: на кой черт метод возвращает размер обработанного массива,
                                                         // если мы вызываем все методы для одного массива за раз и этот размер не меняется со временем.
 
