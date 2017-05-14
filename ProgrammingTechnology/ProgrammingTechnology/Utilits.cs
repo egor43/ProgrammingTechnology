@@ -30,6 +30,7 @@ namespace ProgrammingTechnology
             thread.Start(message);
         }
 
+        // Запуск полного тестирования
         public static void StartAllTest()
         {
             Thread thread = new Thread(new ThreadStart(TestAll));
