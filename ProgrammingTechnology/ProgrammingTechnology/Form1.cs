@@ -20,6 +20,7 @@ namespace ProgrammingTechnology
         public Controller()
         {
             InitializeComponent();
+            Decorator.CloseMethod += GoProgressBar;
         }
 
         public string file_name=""; // Полное имя открытого файла
@@ -157,6 +158,11 @@ namespace ProgrammingTechnology
             f.Show();
         }
 
+        // Увеличение прогресса прогресс бара
+        private void GoProgressBar()
+        {
+            pgProcess.Value += 10;
+        }
 
         //private void All_TEST_Click(object sender, EventArgs e)
         //{

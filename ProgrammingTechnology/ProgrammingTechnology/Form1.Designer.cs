@@ -36,6 +36,7 @@
             this.dlgOpenFile = new System.Windows.Forms.OpenFileDialog();
             this.btnOpenFile = new System.Windows.Forms.Button();
             this.btnRun = new System.Windows.Forms.Button();
+            this.pgProcess = new System.Windows.Forms.ProgressBar();
             this.pnlLoad.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -113,11 +114,19 @@
             this.btnRun.UseVisualStyleBackColor = true;
             this.btnRun.Click += new System.EventHandler(this.btnRun_Click);
             // 
+            // pgProcess
+            // 
+            this.pgProcess.Location = new System.Drawing.Point(37, 457);
+            this.pgProcess.Name = "pgProcess";
+            this.pgProcess.Size = new System.Drawing.Size(452, 32);
+            this.pgProcess.TabIndex = 5;
+            // 
             // Controller
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(526, 511);
+            this.Controls.Add(this.pgProcess);
             this.Controls.Add(this.pnlLoad);
             this.Controls.Add(this.btnRun);
             this.Controls.Add(this.MethodBox);
@@ -140,6 +149,7 @@
         private System.Windows.Forms.Button btnOpenFile;
         private System.Windows.Forms.OpenFileDialog dlgOpenFile;
         private System.Windows.Forms.Button btnRun;
+        private System.Windows.Forms.ProgressBar pgProcess;
     }
 }
 

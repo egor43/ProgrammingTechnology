@@ -17,6 +17,10 @@ namespace ProgrammingTechnology
     {
         private static MethodInfo ExceptionOutOfRangeMethodInfo = new MethodInfo("Метод не найден", -1, -1);
         private static MethodInfo ExceptionErrorMethodInfo = new MethodInfo("Ошибка при вызове метода", -1, -1);
+
+        public delegate void MethodClose();
+        public static event MethodClose CloseMethod;
+
         /// <summary>
         /// Запускает методы сортировки с идентификаторами из methodIDs для массива array.
         /// </summary>
@@ -63,6 +67,11 @@ namespace ProgrammingTechnology
             outStruct.capacity  = sortedArray.Length;   // Спорный вопрос: на кой черт метод возвращает размер обработанного массива,
                                                         // если мы вызываем все методы для одного массива за раз и этот размер не меняется со временем.
 
+            if(CloseMethod!=null)
+            {
+                CloseMethod.Invoke();
+            }
+
             return outStruct;
         }
 
@@ -73,7 +82,7 @@ namespace ProgrammingTechnology
             {
                 -1
             };
-            int[] test_array = new int[] { 0, 1, 3, 2};
+            int[] test_array = new int[] { 1, 3, 2};
 
             List<MethodInfo> test_resList = RunMethods(test_methodIDlist, test_array);
             test_result.Add("Проверка на ввод несуществующего метода", test_resList[0].Equals(ExceptionOutOfRangeMethodInfo));
