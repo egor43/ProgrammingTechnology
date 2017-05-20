@@ -85,7 +85,7 @@ namespace ProgrammingTechnology
             int[] test_array = new int[] { 1, 3, 2};
 
             List<MethodInfo> test_resList = RunMethods(test_methodIDlist, test_array);
-            test_result.Add("Проверка на ввод несуществующего метода", !test_resList[0].Equals(ExceptionOutOfRangeMethodInfo));
+            test_result.Add("Проверка на ввод несуществующего метода", test_resList[0].Equals(ExceptionErrorMethodInfo));
 
             test_methodIDlist = new List<int>
             {

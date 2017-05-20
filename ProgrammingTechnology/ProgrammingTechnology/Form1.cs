@@ -36,6 +36,7 @@ namespace ProgrammingTechnology
             string error_msg = ""; // Сообщение об ошибке
             LoadProcess(ref error_msg); // Загружаем приложение
             SetAvailableMethods(error_msg); // Установка доступных методов
+            Decorator.CloseMethod += GoProgressBar; // Подписываемся на событие завершения метода
             Utilits.LogMessage("Приложение запущено " + DateTime.Now.ToShortDateString() +" " + DateTime.Now.ToShortTimeString(), tbLog);
         }
 
@@ -70,8 +71,8 @@ namespace ProgrammingTechnology
 
             Utilits.LogMessage("Запуск методов сортировки. Пожалуйста подождите...", tbLog);
             Init_Process_Progress_Bar(); // Инициализируем прогресс бар для процесса
-            Decorator.CloseMethod += GoProgressBar; // Подписываемся на событие завершения метода
             methods_id = SetListMethods(); // Установка списка методов для работы
+            list_array.Clear(); // Очищаем список массивов для сортировки. Массив внутри должен быть всегда один
             list_array.Add(Converter.Convert(file_name, separators)); // Добавляем массив в лист для хранения
             this.Enabled = false; // Блокируем форму
             RunCheckedMethods();// Запуск работы сортировок
