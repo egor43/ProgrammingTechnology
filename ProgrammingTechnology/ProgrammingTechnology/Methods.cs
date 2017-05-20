@@ -348,10 +348,16 @@ namespace ProgrammingTechnology
             }
             return arr; 
         }
+        
+        private void Combine(Dictionary<string, bool> source, ref Dictionary<string, bool> paste)
+        { 
+            foreach(var hyi in source)
+                paste.Add(hyi.Key, hyi.Value);
+        }
 
-        public static Dictionary<string, string> Test()
+        public static Dictionary<string, bool> Test()
         {
-            Dictionary<string, string> tmp = new Dictionary<string, string>();//Словарь Имя метода и t или f (прошел тест или нет)
+            Dictionary<string, bool> tmp = new Dictionary<string, bool>();//Словарь Имя метода и t или f (прошел тест или нет)
 
             int[] t1 = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
             int[] t2 = new int[] { };
