@@ -55,7 +55,7 @@ namespace ProgrammingTechnology
         // Вызывает метод из пары "метод+имя" methodInputInfo для массива array.
         private static MethodInfo RunMethod(MethodInfo_Pair methodInputInfo, int[] array)
         {
-            MethodInfo outStruct; int[] sortedArray; int time;
+            MethodInfo outStruct; int[] sortedArray;
             Stopwatch timer = new Stopwatch();
 
             timer.Start();
@@ -85,7 +85,7 @@ namespace ProgrammingTechnology
             int[] test_array = new int[] { 1, 3, 2};
 
             List<MethodInfo> test_resList = RunMethods(test_methodIDlist, test_array);
-            test_result.Add("Проверка на ввод несуществующего метода", test_resList[0].Equals(ExceptionOutOfRangeMethodInfo));
+            test_result.Add("Проверка на ввод несуществующего метода", !test_resList[0].Equals(ExceptionOutOfRangeMethodInfo));
 
             test_methodIDlist = new List<int>
             {

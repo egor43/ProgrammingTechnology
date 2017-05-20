@@ -135,7 +135,7 @@ namespace ProgrammingTechnology
                     srsPoints.ChartType = SeriesChartType.Line;
                     srsPoints.ChartArea = "Sort methods";
                     srsPoints.Legend = "MethodsNames";
-                    srsPoints.IsXValueIndexed = true;
+                    // srsPoints.IsXValueIndexed = true;
                     srsPoints.IsVisibleInLegend = true;
                     srsPoints.BorderWidth = 2;
 

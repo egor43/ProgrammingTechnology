@@ -20,12 +20,12 @@ namespace ProgrammingTechnology
         public Controller()
         {
             InitializeComponent();
-            Decorator.CloseMethod += GoProgressBar;
         }
 
+        int checked_methods = 0; //Количество выбраных методов.
         public string file_name=""; // Полное имя открытого файла
         public List<int[]> list_array = new List<int[]>(); // Лист для массива чисел
-        public char[] separators = new char[] { ',', ';' }; // Разделители
+        public char[] separators = new char[] { ',', ';', ':', '.', '/', '\\', '*', '=', '^', '!', '?', '%', '$', '@', '#', '~' }; // Разделители
         List<int> methods_id = new List<int> { 1 }; // Список методов
         List<MethodInfo> result_method_info = new List<MethodInfo>(); // Лист результатов работы
         List<List<MethodInfo>> list_results = new List<List<MethodInfo>>(); // Лист, содержащий листы с результатами работы
@@ -36,6 +36,7 @@ namespace ProgrammingTechnology
             string error_msg = ""; // Сообщение об ошибке
             LoadProcess(ref error_msg); // Загружаем приложение
             SetAvailableMethods(error_msg); // Установка доступных методов
+            Utilits.LogMessage("Приложение запущено " + DateTime.Now.ToShortDateString() +" " + DateTime.Now.ToShortTimeString(), tbLog);
         }
 
         // Обработчик кнопки "Открыть файл"
@@ -47,20 +48,36 @@ namespace ProgrammingTechnology
                 return;
             }
             file_name = dlgOpenFile.FileName; // получаем выбранный файл
+            Utilits.LogMessage("Открыт файл: " + file_name, tbLog);
         }
 
         // Обработчик кнопки "Начать работу"
         private void btnRun_Click(object sender, EventArgs e)
         {
-            if (!IsThereSelectedMethods())// Если не выбран ни один метод сортировки
+            if ( !IsThereSelectedMethods() )// Если не выбран ни один метод сортировки
             {
                 Utilits.ShowMessage("Не выбраны методы сортировки");
+                Utilits.LogMessage("Не выбраны методы сортировки", tbLog);
                 return;
             }
+
+            if ( file_name=="" )// Если не выбран файл
+            {
+                Utilits.ShowMessage("Не выбран файл");
+                Utilits.LogMessage("Не выбран файл", tbLog);
+                return;
+            }
+
+            Utilits.LogMessage("Запуск методов сортировки. Пожалуйста подождите...", tbLog);
+            Init_Process_Progress_Bar(); // Инициализируем прогресс бар для процесса
+            Decorator.CloseMethod += GoProgressBar; // Подписываемся на событие завершения метода
             methods_id = SetListMethods(); // Установка списка методов для работы
             list_array.Add(Converter.Convert(file_name, separators)); // Добавляем массив в лист для хранения
+            this.Enabled = false; // Блокируем форму
             RunCheckedMethods();// Запуск работы сортировок
             RunView(); // Запуск вьюшки
+
+            this.Enabled = true; // Разблокируем форму
         }
 
         // Метод логики загрузки приложения.
@@ -78,19 +95,21 @@ namespace ProgrammingTechnology
                 ProgressBar.Value += 20;
                 //error_msg+=Utilits.CheckTestResult( Methods.Test() ); ТЕСТ КРИВОЙ 
                 ProgressBar.Value += 20;
-
+               
                 if (error_msg != "") // Если мы нашли какие-либо ошибки
                 {
                     Utilits.ShowMessage(error_msg); 
                 }
+                pnlLoad.Visible = false; //Убираем панель загрузки
+                pnlLoad.Enabled = false;
             }
             catch (Exception) // Если мы выловили вообще непонятную ошибку
             {
                 ProgressBar.Visible = false;
                 lblStart.Text = "Что-то пошло не так...";
+                Utilits.LogMessage("Что-то пошло не так", tbLog);
             }
-            pnlLoad.Visible = false; //Убираем панель загрузки
-            pnlLoad.Enabled = false;
+           
         }
 
         // Установка в панель группировки доступных методов
@@ -118,16 +137,23 @@ namespace ProgrammingTechnology
         // Проверка, что выбран хотя бы один метод сортировки.
         private bool IsThereSelectedMethods()
         {
-            bool IsSelected = false;
+            checked_methods = 0;
             foreach (var check_box in MethodBox.Controls) // Бежим по чекбоксам
             {
                 CheckBox chkbx_method = (CheckBox)check_box; // Приводим элемент к типу чекбокса
                 if(chkbx_method.Checked==true) // Если метод выбран
                 {
-                    return true;
+                    checked_methods++;
                 }
             }
-            return IsSelected;
+
+            Utilits.LogMessage("Выбрано методов сортировки: "+ checked_methods, tbLog);
+
+            if( 0 < checked_methods )
+            {
+                return true;
+            }
+            return false;
         }
 
         // Инициализирует список методов выбранными методами
@@ -158,56 +184,52 @@ namespace ProgrammingTechnology
             f.Show();
         }
 
-        // Увеличение прогресса прогресс бара
-        private void GoProgressBar()
+        // Инициализация прогресс бара для процесса
+        private void Init_Process_Progress_Bar()
         {
-            pgProcess.Value += 10;
+            pgProcess.Value = 0;
+            pgProcess.Maximum = checked_methods * 10;
         }
 
-        //private void All_TEST_Click(object sender, EventArgs e)
-        //{
-        //    // Конвертер:
-        //    string path = "1.txt";
-        //    char[] separators = new char[] { ',', ';' };
-        //    int[] test = new int [30000000];
-        //    try
-        //    {
-        //        test = Converter.Convert(path, separators);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message);
-        //    }
+        // Увеличение прогресса прогресс бара
+        private void GoProgressBar()
+        {          
+            int process_delta = pgProcess.Maximum / checked_methods;
+            pgProcess.Value += process_delta;
+        }
 
+        // Очищает чекбоксы
+        private void Clear_Check_Boxes()
+        {
+            foreach (var check_box in MethodBox.Controls) // Бежим по чекбоксам
+            {
+                CheckBox chkbx_method = (CheckBox)check_box; // Приводим элемент к типу чекбокса
+                chkbx_method.Checked = false;
+            }
+        }
 
-        //    path = "2.txt";
-        //    separators = new char[] { ',', ';' };
-        //    int[] test_2 = new int[30000000];
-        //    try
-        //    {
-        //        test_2 = Converter.Convert(path, separators);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message);
-        //    }
+        // Событие изменения текста в логе
+        private void tbLog_TextChanged(object sender, EventArgs e)
+        {
+            this.Refresh(); // Обновляем форму
+        }
 
-        //    // Декоратор:
-        //    List<int> methods_id = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8 };
-        //    List<MethodInfo> result_method_info = new List<MethodInfo>();
-        //    result_method_info = Decorator.RunMethods(methods_id, test);
-        //    List<List<MethodInfo>> list_results = new List<List<MethodInfo>>();
-        //    list_results.Add(Decorator.RunMethods(methods_id, test));
+        // Событие нажатия на "Очистить"
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            if( MessageBox.Show("Все данные будут потеряны. Вы уверены?", "", MessageBoxButtons.YesNo) == DialogResult.Yes )
+            {
+                checked_methods = 0; //Количество выбраных методов.
+                file_name = ""; // Полное имя открытого файла
+                list_array = new List<int[]>(); // Лист для массива чисел
+                methods_id = new List<int> { 1 }; // Список методов
+                result_method_info = new List<MethodInfo>(); // Лист результатов работы
+                list_results = new List<List<MethodInfo>>(); // Лист, содержащий листы с результатами работы
+                tbLog.Text = "";
 
-        //    methods_id.Clear();
-        //    methods_id = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8 };
+                Clear_Check_Boxes();
 
-        //    list_results.Add(Decorator.RunMethods(methods_id, test_2));
-
-        //    // Вьюшка:
-        //    FormView f = new FormView(list_results);
-        //    f.Show();
-        //}
-
+            }
+        }
     }
 }

@@ -37,11 +37,20 @@ namespace ProgrammingTechnology
             thread.Start();
         }
 
+        // Запись сообщения в лог
+        public static void LogMessage(string message, TextBox text_box)
+        {
+            text_box.Text += message;
+            text_box.Text += Environment.NewLine;          
+        }
+
         // Метод тестирует все классы
         private static void TestAll()
         {
-#if DEBUG
             String error_message = "";
+
+#if DEBUG
+            
             //error_message+=Utilits.CheckTestResult( Converter.Test() ); НЕТ ТЕСТА
             error_message += Utilits.CheckTestResult(Decorator.Test());
             error_message += Utilits.CheckTestResult(FormView.Test());
@@ -55,7 +64,7 @@ namespace ProgrammingTechnology
                 Utilits.ShowMessage(error_message);
             }
         }
-        
+       
         // Метод выводит сообщение
         private static void MsgShow(object message)
         {

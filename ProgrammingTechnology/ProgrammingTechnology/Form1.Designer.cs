@@ -37,6 +37,9 @@
             this.btnOpenFile = new System.Windows.Forms.Button();
             this.btnRun = new System.Windows.Forms.Button();
             this.pgProcess = new System.Windows.Forms.ProgressBar();
+            this.tbLog = new System.Windows.Forms.TextBox();
+            this.lblLog = new System.Windows.Forms.Label();
+            this.btnClear = new System.Windows.Forms.Button();
             this.pnlLoad.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -98,7 +101,7 @@
             // 
             this.btnOpenFile.Location = new System.Drawing.Point(241, 22);
             this.btnOpenFile.Name = "btnOpenFile";
-            this.btnOpenFile.Size = new System.Drawing.Size(127, 23);
+            this.btnOpenFile.Size = new System.Drawing.Size(213, 41);
             this.btnOpenFile.TabIndex = 3;
             this.btnOpenFile.Text = "Открыть файл";
             this.btnOpenFile.UseVisualStyleBackColor = true;
@@ -106,12 +109,13 @@
             // 
             // btnRun
             // 
+            this.btnRun.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnRun.Location = new System.Drawing.Point(241, 69);
             this.btnRun.Name = "btnRun";
-            this.btnRun.Size = new System.Drawing.Size(127, 29);
+            this.btnRun.Size = new System.Drawing.Size(213, 208);
             this.btnRun.TabIndex = 4;
             this.btnRun.Text = "Начать работу";
-            this.btnRun.UseVisualStyleBackColor = true;
+            this.btnRun.UseVisualStyleBackColor = false;
             this.btnRun.Click += new System.EventHandler(this.btnRun_Click);
             // 
             // pgProcess
@@ -121,21 +125,58 @@
             this.pgProcess.Size = new System.Drawing.Size(452, 32);
             this.pgProcess.TabIndex = 5;
             // 
+            // tbLog
+            // 
+            this.tbLog.BackColor = System.Drawing.SystemColors.Control;
+            this.tbLog.Location = new System.Drawing.Point(37, 364);
+            this.tbLog.Multiline = true;
+            this.tbLog.Name = "tbLog";
+            this.tbLog.ReadOnly = true;
+            this.tbLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.tbLog.Size = new System.Drawing.Size(452, 73);
+            this.tbLog.TabIndex = 6;
+            this.tbLog.TextChanged += new System.EventHandler(this.tbLog_TextChanged);
+            // 
+            // lblLog
+            // 
+            this.lblLog.AutoSize = true;
+            this.lblLog.Location = new System.Drawing.Point(34, 348);
+            this.lblLog.Name = "lblLog";
+            this.lblLog.Size = new System.Drawing.Size(29, 13);
+            this.lblLog.TabIndex = 7;
+            this.lblLog.Text = "Лог:";
+            // 
+            // btnClear
+            // 
+            this.btnClear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnClear.Location = new System.Drawing.Point(241, 284);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(213, 23);
+            this.btnClear.TabIndex = 8;
+            this.btnClear.Text = "Сброс";
+            this.btnClear.UseVisualStyleBackColor = false;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
             // Controller
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(526, 511);
-            this.Controls.Add(this.pgProcess);
             this.Controls.Add(this.pnlLoad);
             this.Controls.Add(this.btnRun);
             this.Controls.Add(this.MethodBox);
             this.Controls.Add(this.btnOpenFile);
+            this.Controls.Add(this.pgProcess);
+            this.Controls.Add(this.tbLog);
+            this.Controls.Add(this.lblLog);
+            this.Controls.Add(this.btnClear);
             this.Name = "Controller";
-            this.Text = "Controller";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Методы сортировки 15-ИС-2 (Б)";
             this.pnlLoad.ResumeLayout(false);
             this.pnlLoad.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -150,6 +191,9 @@
         private System.Windows.Forms.OpenFileDialog dlgOpenFile;
         private System.Windows.Forms.Button btnRun;
         private System.Windows.Forms.ProgressBar pgProcess;
+        private System.Windows.Forms.TextBox tbLog;
+        private System.Windows.Forms.Label lblLog;
+        private System.Windows.Forms.Button btnClear;
     }
 }
 
