@@ -135,6 +135,7 @@ namespace ProgrammingTechnology
                     srsPoints.ChartType = SeriesChartType.Line;
                     srsPoints.ChartArea = "Sort methods";
                     srsPoints.Legend = "MethodsNames";
+                    srsPoints.IsXValueIndexed = true;
                     srsPoints.IsVisibleInLegend = true;
                     srsPoints.BorderWidth = 2;
 
@@ -176,29 +177,10 @@ namespace ProgrammingTechnology
             return lol;
         }
 
+
+#if DEBUG
         /// <summary>
-        /// Запуск тестов вьюшки с помощью директив препроцессора
-        /// </summary>
-        public static void RunTest()
-        {
-#if false // заменить false на DEBUG для вызова метода Test() при дебагинге
-            // Вызываем метод Test();
-            Dictionary<string, bool> viewTestCases = FormView.Test();
-            string viewTestResult = "";
-
-            foreach (var test in viewTestCases)
-                viewTestResult += test.Key + "\t" + test.Value.ToString() + "\n";
-
-            MessageBox.Show(viewTestResult);
-#else
-            //  Визуальный тест вьюшки.
-            FormView f = new FormView(FormView.CreateSomeGraphData(10, 10));
-            f.Show();
-#endif
-        }
-
-        /// <summary>
-        /// Тест вьюшки
+        /// Тест вьюшки DEBUG
         /// </summary>
         /// <returns>Всё ли верно</returns>
         public static Dictionary<string, bool> Test()
@@ -281,9 +263,20 @@ namespace ProgrammingTechnology
                 MessageBox.Show(viewTestResult);
             */
         }
+#else
+        /// <summary>
+        /// Вместо теста вьюшки, пустой метод тестирования при Релизе
+        /// </summary>
+        /// <returns>Пустой словарь</returns>
+        public static Dictionary<string, bool> Test()
+        {
+            Dictionary<string, bool> testCases = new Dictionary<string, bool>();
+            return testCases;
+        }
+#endif
     }
 
-    class ViewException : Exception
+class ViewException : Exception
     {
         public ViewException(string message) : base(message)
         { }
