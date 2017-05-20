@@ -409,5 +409,58 @@ namespace ProgrammingTechnology
             return test_dic;
         }
         
+        private Dictionary<string,bool> Test_InsertionSort()
+        {
+            string name="InsertionSort";
+            int[] t1 = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+            int[] t2 = new int[] { };
+            int[] t3 = new int[] { 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 };
+            int[] t4 = new int[] { 9, 64, 7, -6, 5, 64, 3, 2, -1, 0 };
+            int[] t5 = new int[] { 5};
+            int[] t6 = new int[] { -5, -10, -8, -7,  -3};
+          
+            Dictionary<string,bool> test = new Dictionary<string,bool>();
+            
+            #if Debug
+            test.Add(name,Check_Array(InsertionSort(t1)));
+             test.Add(name,Check_Array(InsertionSort(t2)));
+             test.Add(name,Check_Array(InsertionSort(t3)));
+             test.Add(name,Check_Array(InsertionSort(t4)));
+             test.Add(name,Check_Array(InsertionSort(t5)));
+             test.Add(name,Check_Array(InsertionSort(t6)));
+            #else
+           test.Add(name,Check_Array(InsertionSort(t1)));
+             test.Add(name,Check_Array(InsertionSort(t2)));
+             test.Add(name,Check_Array(InsertionSort(t3)));
+            #endif
+            return test;
+        }
+        
+        private Dictionary<string,bool> Test_MergeSort()
+        {
+            string name="MergeSort";
+            int[] t1 = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+            int[] t2 = new int[] { };
+            int[] t3 = new int[] { 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 };
+            int[] t4 = new int[] { 9, 64, 7, -6, 5, 64, 3, 2, -1, 0 };
+            int[] t5 = new int[] { 5};
+            int[] t6 = new int[] { -5, -10, -8, -7,  -3};
+          
+            Dictionary<string,bool> test = new Dictionary<string,bool>();
+            
+            #if Debug
+            test.Add(name,Check_Array(MergeSort(t1)));
+             test.Add(name,Check_Array(MergeSort(t2)));
+             test.Add(name,Check_Array(MergeSort(t3)));
+             test.Add(name,Check_Array(MergeSort(t4)));
+             test.Add(name,Check_Array(MergeSort(t5)));
+             test.Add(name,Check_Array(MergeSort(t6)));
+            #else
+           test.Add(name,Check_Array(MergeSort(t1)));
+             test.Add(name,Check_Array(MergeSort(t2)));
+             test.Add(name,Check_Array(MergeSort(t3)));
+            #endif
+            return test;
+        }
     }
 }
