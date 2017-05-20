@@ -398,19 +398,21 @@ namespace ProgrammingTechnology
             int[] t5=new int[] {1,2,3,3,5,6};
             int[] t6=new int[]{-1,-1,-2,-3,-3,-5,-6};
             int[] t7=new int[] {-1,-2,-3,-3,-5,-6};
+            
             Dictionary<string,bool> test_dic=new Dictionary<string,bool>();
+            
             #if Debug
-            test_dic.Add(name,Check_Array(t1));
-            test_dic.Add(name,Check_Array(t2));
-            test_dic.Add(name,Check_Array(t3));
-            test_dic.Add(name,Check_Array(t4));
-            test_dic.Add(name,Check_Array(t5));
-            test_dic.Add(name,Check_Array(t6));
-            test_dic.Add(name,Check_Array(t7));
+            test_dic.Add(name,Check_Array(GnomeSort(t1)));
+            test_dic.Add(name,Check_Array(GnomeSort(t2)));
+            test_dic.Add(name,Check_Array(GnomeSort(t3)));
+            test_dic.Add(name,Check_Array(GnomeSort(t4)));
+            test_dic.Add(name,Check_Array(GnomeSort(t5)));
+            test_dic.Add(name,Check_Array(GnomeSort(t6)));
+            test_dic.Add(name,Check_Array(GnomeSort(t7)));
             #else
-            test_dic.Add(name,Check_Array(t1));
-            test_dic.Add(name,Check_Array(t2));
-            test_dic.Add(name,Check_Array(t3));
+            test_dic.Add(name,Check_Array(GnomeSort(t1)));
+            test_dic.Add(name,Check_Array(GnomeSort(t2)));
+            test_dic.Add(name,Check_Array(GnomeSort(t3)));
             #endif
             return test_dic;
         }
