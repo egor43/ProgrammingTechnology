@@ -15,8 +15,8 @@ namespace ProgrammingTechnology
 
     static class Decorator
     {
-        private static MethodInfo ExceptionOutOfRangeMethodInfo = new MethodInfo("Метод не найден", -1, -1);
-        private static MethodInfo ExceptionErrorMethodInfo = new MethodInfo("Ошибка при вызове метода", -1, -1);
+        private static MethodInfo ExceptionOutOfRangeMethodInfo = new MethodInfo("Метод не найден", 0, 0);
+        private static MethodInfo ExceptionErrorMethodInfo = new MethodInfo("Ошибка при вызове метода", 0, 0);
 
         public delegate void MethodClose();
         public static event MethodClose CloseMethod;
