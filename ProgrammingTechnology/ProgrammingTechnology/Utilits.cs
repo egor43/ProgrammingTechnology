@@ -40,8 +40,10 @@ namespace ProgrammingTechnology
         // Запись сообщения в лог
         public static void LogMessage(string message, TextBox text_box)
         {
-            text_box.Text += message;
-            text_box.Text += Environment.NewLine;          
+            text_box.AppendText(message);
+            text_box.Text += Environment.NewLine;
+            text_box.SelectionStart = text_box.Text.Length;
+            text_box.ScrollToCaret();
         }
 
         // Метод тестирует все классы
