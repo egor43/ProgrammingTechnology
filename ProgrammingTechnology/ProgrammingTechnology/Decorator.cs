@@ -63,7 +63,7 @@ namespace ProgrammingTechnology
             timer.Stop();
 
             outStruct.name      = methodInputInfo.Key;
-            outStruct.time      = (int)timer.Elapsed.TotalSeconds;                 // Время в секундах.
+            outStruct.time      = (int)timer.Elapsed.TotalMilliseconds;                 // Время в миллисекундах.
             outStruct.capacity  = sortedArray.Length;   // Спорный вопрос: на кой черт метод возвращает размер обработанного массива,
                                                         // если мы вызываем все методы для одного массива за раз и этот размер не меняется со временем.
 
