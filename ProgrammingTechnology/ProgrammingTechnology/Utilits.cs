@@ -46,6 +46,17 @@ namespace ProgrammingTechnology
             text_box.ScrollToCaret();
         }
 
+        // Копирование массива
+        public static int[] CopyArray(int[] array_for_copy)
+        {
+            int[] result = new int[array_for_copy.Length];
+            for(int index=0; index<array_for_copy.Length; index++)
+            {
+                result[index] = array_for_copy[index];
+            }
+            return result;
+        }
+
         // Метод тестирует все классы
         private static void TestAll()
         {
