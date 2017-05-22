@@ -37,7 +37,7 @@ namespace ProgrammingTechnology
                 try
                 {
                     MethodInfo_Pair methodInputInfo = new MethodInfo_Pair(Methods.DicIdName[methodIDs[i]], Methods.DicMetSor[Methods.DicIdName[methodIDs[i]]]);
-                    decRes.Add(RunMethod(methodInputInfo, array));
+                    decRes.Add(RunMethod(methodInputInfo, Utilits.CopyArray(array)));
                 }
                 catch (IndexOutOfRangeException e)
                 {
@@ -57,13 +57,12 @@ namespace ProgrammingTechnology
         {
             MethodInfo outStruct; int[] sortedArray;
             Stopwatch timer = new Stopwatch();
-
             timer.Start();
             sortedArray = methodInputInfo.Value(array);
             timer.Stop();
 
             outStruct.name      = methodInputInfo.Key;
-            outStruct.time      = (int)timer.Elapsed.TotalMilliseconds;                 // Время в миллисекундах.
+            outStruct.time      = (int)timer.Elapsed.TotalSeconds; // Время в секундах.
             outStruct.capacity  = sortedArray.Length;   // Спорный вопрос: на кой черт метод возвращает размер обработанного массива,
                                                         // если мы вызываем все методы для одного массива за раз и этот размер не меняется со временем.
 
