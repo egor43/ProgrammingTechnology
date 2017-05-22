@@ -194,7 +194,8 @@ namespace ProgrammingTechnology
 
         // Увеличение прогресса прогресс бара
         private void GoProgressBar()
-        {          
+        {
+            System.Threading.Thread.Sleep(3); // даем потоку передохнуть    
             int process_delta = pgProcess.Maximum / checked_methods;
             pgProcess.Value += process_delta;
         }

@@ -66,6 +66,8 @@ namespace ProgrammingTechnology
             outStruct.capacity  = sortedArray.Length;   // Спорный вопрос: на кой черт метод возвращает размер обработанного массива,
                                                         // если мы вызываем все методы для одного массива за раз и этот размер не меняется со временем.
 
+            System.Threading.Thread.Sleep(3); // даем потоку передохнуть
+
             if(CloseMethod!=null)
             {
                 CloseMethod.Invoke();
