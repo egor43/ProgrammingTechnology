@@ -170,6 +170,8 @@
             this.Controls.Add(this.tbLog);
             this.Controls.Add(this.lblLog);
             this.Controls.Add(this.btnClear);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
             this.Name = "Controller";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Методы сортировки 15-ИС-2 (Б)";

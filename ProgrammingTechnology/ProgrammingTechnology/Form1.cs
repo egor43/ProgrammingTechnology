@@ -77,7 +77,6 @@ namespace ProgrammingTechnology
             this.Enabled = false; // Блокируем форму
             RunCheckedMethods();// Запуск работы сортировок
             RunView(); // Запуск вьюшки
-
             this.Enabled = true; // Разблокируем форму
         }
 
@@ -194,10 +193,10 @@ namespace ProgrammingTechnology
 
         // Увеличение прогресса прогресс бара
         private void GoProgressBar()
-        {
-            System.Threading.Thread.Sleep(3); // даем потоку передохнуть    
+        {         
             int process_delta = pgProcess.Maximum / checked_methods;
             pgProcess.Value += process_delta;
+            this.Refresh();
         }
 
         // Очищает чекбоксы
@@ -233,5 +232,6 @@ namespace ProgrammingTechnology
 
             }
         }
+
     }
 }
