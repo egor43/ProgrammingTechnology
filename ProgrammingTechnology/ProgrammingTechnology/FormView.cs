@@ -119,6 +119,8 @@ namespace ProgrammingTechnology
             methodsArea.AxisX.Title = "Capacity";
             methodsArea.AxisY.Title = "Time";
             crtGraph.ChartAreas.Add(methodsArea);
+            methodsArea.AxisY.Minimum = 0; 
+            methodsArea.AxisX.Minimum = 0;
 
             // Добавляем в Chart область имён методов с цветом их графиков.
             Legend methodsLegend = new Legend("MethodsNames");
