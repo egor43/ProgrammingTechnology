@@ -100,6 +100,38 @@ namespace ProgrammingTechnology
                     Insert[minEl] = kesh;
                 }
                 return Insert;
+          }
+            private Dictionary<string, bool> SelectionSort_Test() 
+            { 
+                string name = "SelectionSort"; 
+                int[] t1 = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }; 
+                int[] t2 = new int[] { }; 
+                int[] t3 = new int[] { 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 }; 
+                int[] t4 = new int[] { 1, 1, 2, 3, 3, 5, 6 }; 
+                int[] t5 = new int[] { 1, 2, 3, 3, 5, 6 }; 
+                int[] t6 = new int[] { -1, -1, -2, -3, -3, -5, -6 }; 
+                int[] t7 = new int[] { -1, -2, -3, -3, -5, -6 }; 
+                int[] t8 = new int[] { 0, 1, 0, 0, 0, 0, 0, 0, 1, 0 }; 
+                int[] t9 = new int[] { 0, 1, 2, -3, 4, -4, 3, 2, 1, 0 }; 
+                Dictionary<string, bool> test_dic = new Dictionary<string, bool>(); 
+                #if Debug 
+                test_dic.Add(name,Check_Array(SelectionSort(t1))); 
+                test_dic.Add(name,Check_ArraySelectionSort(t2))); 
+                test_dic.Add(name,Check_Array(SelectionSortt3))); 
+                test_dic.Add(name,Check_Array(SelectionSort(t4))); 
+                test_dic.Add(name,Check_Array(SelectionSort(t5))); 
+                test_dic.Add(name,Check_Array(SelectionSort(t6))); 
+                test_dic.Add(name,Check_Array(SelectionSort(t7))); 
+                test_dic.Add(name,Check_Array(SelectionSort(t8))); 
+                test_dic.Add(name,Check_Array(SelectionSort(t9))); 
+                #else 
+                test_dic.Add(name, Check_Array(SelectionSort(t1))); 
+                test_dic.Add(name, Check_Array(SelectionSort(t2))); 
+                test_dic.Add(name, Check_Array(SelectionSort(t3))); 
+                test_dic.Add(name, Check_Array(SelectionSort(t8))); 
+                test_dic.Add(name, Check_Array(SelectionSort(t9))); 
+                #endif 
+                return test_dic; 
             }
         }
     }
