@@ -385,7 +385,7 @@ namespace ProgrammingTechnology
             {
                 if(input[i]>input[i+1]) return false;
             }
-            return false;
+            return true;
         }
         
         private Dictionary<string,bool> Test_GnomeSort()
