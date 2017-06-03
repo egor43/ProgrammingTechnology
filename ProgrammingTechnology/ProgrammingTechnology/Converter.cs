@@ -35,22 +35,29 @@ namespace ProgrammingTechnology
             string read;//Строка для чтения из файла построчно.
             int tmpInt;//Временная переменная для хранения преобразованного из строки числа.
             
-            StreamReader sReader = new StreamReader(path);            
-            while ((read = sReader.ReadLine()) != null)
+            StreamReader sReader = new StreamReader(path);
+            try
             {
-                foreach (var v in read.Split(separators))
+                while ((read = sReader.ReadLine()) != null)
                 {
-                    if (int.TryParse(v.Trim(' '), out tmpInt))
+                    foreach (var v in read.Split(separators))
                     {
-                        listArray.Add(tmpInt);
-                    }
-                    else if (v.Trim(' ') != "")
-                    {
-                        throw new ArgumentException("Файл содержит недопустимые символы.");
+                        if (int.TryParse(v.Trim(' '), out tmpInt))
+                        {
+                            listArray.Add(tmpInt);
+                        }
+                        else if (v.Trim(' ') != "")
+                        {
+                            throw new ArgumentException("Файл содержит недопустимые символы.");
+                        }
                     }
                 }
+                sReader.Close();
             }
-            sReader.Close();
+            catch
+            {
+                return listArray.ToArray();
+            }
 
             return listArray.ToArray();
         }
@@ -63,6 +70,11 @@ namespace ProgrammingTechnology
         public static Dictionary<string, bool> Test()
         {
             Dictionary<string, bool> test_result = new Dictionary<string, bool>();
+            if (!Directory.Exists("ConverterTestFiles"))
+            {
+                test_result.Add("FolderNotFound", false);
+                return test_result;
+            }
             DirectoryInfo dir = new DirectoryInfo("ConverterTestFiles");
 
             foreach (var v in dir.GetFiles())

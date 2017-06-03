@@ -25,7 +25,6 @@ namespace ProgrammingTechnology
         int checked_methods = 0; //Количество выбраных методов.
         public string file_name=""; // Полное имя открытого файла
         public List<int[]> list_array = new List<int[]>(); // Лист для массива чисел
-        //public char[] separators = new char[] { ',', ';', ':', '.', '/', '\\', '*', '=', '^', '!', '?', '%', '$', '@', '#', '~' }; // Разделители
         List<int> methods_id = new List<int> { 1 }; // Список методов
         List<MethodInfo> result_method_info = new List<MethodInfo>(); // Лист результатов работы
         List<List<MethodInfo>> list_results = new List<List<MethodInfo>>(); // Лист, содержащий листы с результатами работы
@@ -93,7 +92,7 @@ namespace ProgrammingTechnology
                 ProgressBar.Value += 20;
                 error_msg += Utilits.CheckTestResult(FormView.Test());
                 ProgressBar.Value += 20;
-                //error_msg+=Utilits.CheckTestResult( Methods.Test() ); ТЕСТ КРИВОЙ 
+                //error_msg+=Utilits.CheckTestResult( Methods.Test() );
                 ProgressBar.Value += 20;
                
                 if (error_msg != "") // Если мы нашли какие-либо ошибки
