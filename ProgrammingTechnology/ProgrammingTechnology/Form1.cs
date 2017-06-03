@@ -25,7 +25,7 @@ namespace ProgrammingTechnology
         int checked_methods = 0; //Количество выбраных методов.
         public string file_name=""; // Полное имя открытого файла
         public List<int[]> list_array = new List<int[]>(); // Лист для массива чисел
-        public char[] separators = new char[] { ',', ';', ':', '.', '/', '\\', '*', '=', '^', '!', '?', '%', '$', '@', '#', '~' }; // Разделители
+        //public char[] separators = new char[] { ',', ';', ':', '.', '/', '\\', '*', '=', '^', '!', '?', '%', '$', '@', '#', '~' }; // Разделители
         List<int> methods_id = new List<int> { 1 }; // Список методов
         List<MethodInfo> result_method_info = new List<MethodInfo>(); // Лист результатов работы
         List<List<MethodInfo>> list_results = new List<List<MethodInfo>>(); // Лист, содержащий листы с результатами работы
@@ -73,7 +73,7 @@ namespace ProgrammingTechnology
             Init_Process_Progress_Bar(); // Инициализируем прогресс бар для процесса
             methods_id = SetListMethods(); // Установка списка методов для работы
             list_array.Clear(); // Очищаем список массивов для сортировки. Массив внутри должен быть всегда один
-            list_array.Add(Converter.Convert(file_name, separators)); // Добавляем массив в лист для хранения
+            list_array.Add(Converter.Convert(file_name, Converter.DefaultSeparators)); // Добавляем массив в лист для хранения
             this.Enabled = false; // Блокируем форму
             RunCheckedMethods();// Запуск работы сортировок
             RunView(); // Запуск вьюшки
@@ -87,7 +87,7 @@ namespace ProgrammingTechnology
             ProgressBar.Visible = true;
             try
             {
-                //error_msg+=Utilits.CheckTestResult( Converter.Test() ); НЕТ ТЕСТА
+                error_msg+=Utilits.CheckTestResult(Converter.Test());
                 ProgressBar.Value += 20;
                 error_msg += Utilits.CheckTestResult(Decorator.Test());
                 ProgressBar.Value += 20;
