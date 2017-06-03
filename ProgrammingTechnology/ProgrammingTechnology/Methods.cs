@@ -416,6 +416,36 @@ namespace ProgrammingTechnology
             #endif
             return test_dic;
         }
+        
+        private Dictionary<string,bool> Test_ModifiedBubbleSort()
+        {
+            string name="ModifiedBubbleSort";
+            int[] t1 = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+            int[] t2 = new int[] { };
+            int[] t3 = new int[] { 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 };
+            int[] t4=new int[]{1,1,2,3,3,5,6};
+            int[] t5=new int[] {1,2,3,3,5,6};
+            int[] t6=new int[]{-1,-1,-2,-3,-3,-5,-6};
+            int[] t7=new int[] {-1,-2,-3,-3,-5,-6};
+            
+            Dictionary<string,bool> test_dic=new Dictionary<string,bool>();
+            
+            #if Debug
+            test_dic.Add(name,Check_Array(ModifiedBubbleSort(t1)));
+            test_dic.Add(name,Check_Array(ModifiedBubbleSort(t2)));
+            test_dic.Add(name,Check_Array(ModifiedBubbleSort(t3)));
+            test_dic.Add(name,Check_Array(ModifiedBubbleSort(t4)));
+            test_dic.Add(name,Check_Array(ModifiedBubbleSort(t5)));
+            test_dic.Add(name,Check_Array(ModifiedBubbleSort(t6)));
+            test_dic.Add(name,Check_Array(ModifiedBubbleSort(t7)));
+            #else
+            test_dic.Add(name,Check_Array(ModifiedBubbleSort(t1)));
+            test_dic.Add(name,Check_Array(ModifiedBubbleSort(t2)));
+            test_dic.Add(name,Check_Array(ModifiedBubbleSort(t3)));
+            #endif
+            return test_dic;
+        }
+        
           private Dictionary<string,bool> Test_OddEvenSort()
         {
             string name="OddEvenSort";
